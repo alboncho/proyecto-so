@@ -6,7 +6,7 @@ tabla_algoritmo.forEach(tabla => {
       let tr = document.createElement('tr');
       for (let j=0; j<7; j++) {
          let td = document.createElement('td');
-         let numero_random = Math.random() * 10;
+         let numero_random = Math.random() * 15;
          let tr_contenido = [Math.floor(numero_random), Math.floor(numero_random / 2), Math.floor(numero_random / 1.5)];
          if (j == 0) {
             td.textContent = i + 1;
