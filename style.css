@@ -16,13 +16,56 @@
 
 body {
    background-color: #343047;
+
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
 }
 
-.box-procesador {
+.contenedor {
+   width: 900px;
+}
+
+.bxControles {
+   margin-top: 20px;
+   display: flex;
+   gap: 10px;
+}
+
+.bxControles .algoritmos {
+   display: flex;
+}
+
+.algoritmo {
+   background-color: #fff;
+   border-right: 1px solid #333;
+   text-align: center;
+   padding: 5px;
+   cursor: pointer;
+}
+
+.algoritmo.active {
+   background-color: #646464;
+   color: #d5d5d5;
+}
+
+.bxControles .bxBtn button {
+   background-color: #3CE995;
+   padding: 5px 10px;
+   text-decoration: none;
+   cursor: pointer;
+}
+
+.bxBtn button:hover {
+   background-color: #33a86f;
+}
+
+.bxProcesador {
    position: relative;
    top: 50px;
    display: flex;
-   justify-content: space-around;
+   justify-content: space-between;
 }
 
 .tabla-algoritmo {
