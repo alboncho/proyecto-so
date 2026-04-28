@@ -16,15 +16,15 @@
 
 body {
    background-color: #343047;
-
    display: flex;
    flex-direction: column;
    justify-content: center;
    align-items: center;
+   min-height: 100vh;
 }
 
 .contenedor {
-   width: 900px;
+   margin: 0 auto;
 }
 
 .bxControles {
@@ -61,43 +61,43 @@ body {
    background-color: #33a86f;
 }
 
-.bxProcesador {
+.bxProcesos {
    position: relative;
    top: 50px;
    display: flex;
    justify-content: space-between;
 }
 
-.tabla-algoritmo {
+.tablaProcesos {
    border: 1px solid #fff;
    border-collapse: collapse;
    color: #fff;
 }
 
-.tabla-algoritmo tr:nth-child(even) {
+.tablaProcesos tr:nth-child(even) {
    background-color: rgb(255 255 255 / .1);
    color: #fff;
 }
 
-.tabla-algoritmo tr:nth-child(odd) {
+.tablaProcesos tr:nth-child(odd) {
    color: #fff;
 }
 
-.tabla-algoritmo tr:first-child {
+.tablaProcesos tr:first-child {
    background-color: #fff;
    color: #333;
 }
 
-.tabla-algoritmo tr:first-child td {
+.tablaProcesos tr:first-child td {
    border-right: 1px solid rgb(0 0 0 / .2);
 }
 
-.tabla-algoritmo tr:hover {
+.tablaProcesos tr:hover {
    background-color: #3CE995;
    color: #333;
 }
 
-.tabla-algoritmo tr td {
+.tablaProcesos tr td {
    padding: 2px 10px;
    text-align: center;
 }
@@ -105,4 +105,26 @@ body {
 .T, .E, .I {
    color: #ff248a;
    font-weight: bold;
+}
+
+/* MODAL */
+.bxModal {
+   width: 100%;
+   height: 100%;
+   background-color: rgb(51 51 51 / .5);
+   position: absolute;
+   top: 0;
+   left: 0;
+   display: none;
+}
+
+.bxModal .modal {
+   background-color: #282828;
+   color: red;
+   width: 250px;
+   height: 70px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   border-radius: 10px;
 }
