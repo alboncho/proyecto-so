@@ -30,15 +30,16 @@ body {
 .bxControles {
    margin-top: 20px;
    display: flex;
-   gap: 10px;
+   justify-content: space-between;
+   gap: 50px;
 }
 
 .bxControles .algoritmos {
    display: flex;
 }
 
-.algoritmo {
-   background-color: #fff;
+.bxControles .algoritmo {
+   background-color: #c5c5c5;
    border-right: 1px solid #333;
    text-align: center;
    padding: 5px;
@@ -50,16 +51,42 @@ body {
    color: #d5d5d5;
 }
 
+.bxBtn {
+   display: flex;
+   gap: 10px;
+}
+
 .bxControles .bxBtn button {
-   background-color: #3CE995;
    padding: 5px 10px;
    text-decoration: none;
    cursor: pointer;
 }
 
-.bxBtn button:hover {
+.bxBtn .btnCorrer {
+   background-color: #3CE995;
+}
+
+.bxBtn .btnCorrer:hover {
    background-color: #33a86f;
 }
+
+.bxBtn .btnLimpiar {
+   background-color: #333;
+   color: #fff;
+}
+
+.bxBtn .btnLimpiar:hover {
+   background-color: #5a5a5a;
+}
+
+.bxPromedios {
+   color: #fff;
+}
+
+.bxPromedios .promedioT, .bxPromedios .promedioE, .bxPromedios .promedioI {
+   color: #ff248a;
+}
+
 
 .bxProcesos {
    position: relative;

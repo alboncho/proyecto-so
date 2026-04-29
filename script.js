@@ -28,23 +28,28 @@ async function leerLineaPorLinea() {
       ({ value: chunk, done: doneReading } = await lector.read());
    }
 
+   if (acumulador) {
+      lineas.push(acumulador);
+   }
+
    let index = 0;
    let tablaUno = Math.ceil(lineas.length/2);
    let tabalDos = Math.floor(lineas.length/2);
    let tablaNumero = tablaUno;
 
+   lineas = ordenar(lineas);
    datos = [...lineas];
 
    tabla_algoritmo.forEach(function(tabla) {
       for (let i=index; i<(index+tablaNumero); i++) {
          let tr = document.createElement('tr');
-         let datos = lineas.shift();
+         let datos_proceso = lineas.shift();
          for (let j=0; j<8; j++) {
             let td = document.createElement('td');
             if (j == 0) {
                td.textContent = (i+1);
             } else {
-               td.textContent = datos.split(' ')[j-1];
+               td.textContent = datos_proceso.split(' ')[j-1];
             }
             tr.appendChild(td);
          }
@@ -62,6 +67,7 @@ const algoritmo = {
    Prioridad: false,
    RR: false,
    SJN: false,
+   SRN: false
 }
 
 function mostrarModal(e) {
@@ -75,122 +81,232 @@ function cambiarActive(e) {
    algoritmos.forEach(function(algoritmo) {
       algoritmo.classList.remove('active');
    })
+
    e.currentTarget.classList.toggle('active');
 
    algoritmo.FCFS = false;
    algoritmo.Prioridad = false;
    algoritmo.RR = false;
    algoritmo.SJN = false;
-   algoritmo[e.target.textContent] = !false;
+   algoritmo.SRN = false;
+
+   algoritmo[e.target.textContent] = true;
    textoAlgoritmo = e.target.textContent;
 }
 
 function ordenar(datos) {
    for (let i=0; i<datos.length-1; i++) {
       for (let j=i+1; j<datos.length; j++) {
-         if (datos[i].split(' ')[0] > datos[j].split(' ')[0]) {
+         if (parseInt(datos[i].split(' ')[0]) > parseInt(datos[j].split(' ')[0])) {
             let aux = datos[i];
             datos[i] = datos[j];
             datos[j] = aux;
          }
       }
    }
+
+   return datos;
 }
 
-function asignarPosicion(datos) {
-   for (let i=0; i<datos.length; i++) {
-      datos[i] += ` ${i+1}`;
-   }
-}
-
-function traerContenido(posicion, TEI, resultado) {
-   for (let i=0; i<resultado.length; i++) {
-
-      if (resultado[i].split(' ')[0] == posicion) {
-         if (TEI === 0) {
-            return resultado[i].split(' ')[1];
-         } else if (TEI === 1) {
-            return resultado[i].split(' ')[2];
-         } else if (TEI === 2) {
-            return resultado[i].split(' ')[3];
-         } else {
-            return resultado[i].split(' ')[4];
-         }
-      }
-   }
-}
-
-function agregarDatosATabla(resultado) {
+function agregarFCFS(resultado) {
    tabla_algoritmo.forEach(function(tabla) {
       let filas = tabla.children;
-      let indice = 0;
 
       [...filas].forEach((fila) => {
          if (fila.children.length > 1) {
             let columnas = fila.children;
             let TEI = 0;
 
+            contenido = resultado.shift();
+            
             [...columnas].forEach((columna) => {
-               if (columna.textContent == "") {
-                  columna.textContent = traerContenido(indice, TEI, resultado);
+               if (columna.textContent === "") {
+                  columna.textContent = contenido.split(' ')[TEI];
                   TEI++;
                } 
             });
-
          }
-         indice++;
       });
    });
 }
 
-let resultado = [];
+function ordenarPorTiempoEjecucion(tmp) {
+   for (let i=0; i<tmp.length-1; i++) {
+      for (let j=i+1; j<tmp.length; j++) {
+         if (parseInt(tmp[i].split(' ')[1]) > parseInt(tmp[j].split(' ')[1])) {
+            let aux = tmp[i];
+            tmp[i] = tmp[j];
+            tmp[j] = aux;
+         }
+      }
+   }
+}
+
+function agregarSJN(resultado) {
+   tabla_algoritmo.forEach(function(tabla) {
+      let filas = tabla.children;
+
+      [...filas].forEach((fila) => {
+         if (fila.children.length > 1) {
+            let columnas = fila.children;
+            let TEI = 0;
+
+            contenido = resultado.shift();
+            
+            [...columnas].forEach((columna) => {
+               if (columna.textContent === "") {
+                  columna.textContent = contenido.split(' ')[TEI];
+                  TEI++;
+               } 
+            });
+         }
+      });
+   });
+}
+
+let resultadoT = document.querySelector('.resultadoT');
+let resultadoE = document.querySelector('.resultadoE');
+let resultadoI = document.querySelector('.resultadoI');
+
+function mostrarPromedio(t, e, i) {
+   resultadoT.textContent = (t / datos.length).toFixed(2);
+   resultadoE.textContent = (e / datos.length).toFixed(2);
+   resultadoI.textContent = (i / datos.length).toFixed(2);
+}
 
 function calcularAlgoritmo(textoAlgoritmo) {
+   limpiar();
+
    switch (textoAlgoritmo) {
-      case 'FCFS':
-         asignarPosicion(datos);
-         console.log(" asignar: ", datos);
-         ordenar(datos);
-         console.log(" ordenar: ", datos);
+      case 'FCFS': {
+         let datos_copia = [...datos];
+         let resultado = [];
+         let sumT = 0, sumE = 0, sumI = 0;
 
          let tiempo = 0;
-         let proceso = datos.shift();
+         let proceso = datos_copia.shift();
 
          while (true) {
-            if (proceso.split(' ')[3] == 27) {
-               console.log(proceso);
-            }
-            if (proceso.split(' ')[0] == tiempo || proceso.split(' ')[0] <= tiempo) {
+            if (parseInt(proceso.split(' ')[0]) <= tiempo) {
                tiempo += parseInt(proceso.split(' ')[1]);
 
-               let tiempo_inicial = parseInt(proceso.split(' ')[0]);
-               let tiempo_ejecucion = parseInt(proceso.split(' ')[1]);
-               let T = `${tiempo - tiempo_inicial}`;
-               let E = `${(tiempo - tiempo_inicial) - tiempo_ejecucion}`;
-               let I = ((tiempo_ejecucion) / T).toFixed(2);
-
-               let posicion = proceso.split(' ')[3];
+               let T = tiempo - parseInt(proceso.split(' ')[0]);
+               let E = T - parseInt(proceso.split(' ')[1]);
+               let I = (parseInt(proceso.split(' ')[1]) / T).toFixed(2);
                
-               resultado.push(`${posicion} ${tiempo} ${T} ${E} ${I}`);
+               resultado.push(`${tiempo} ${T} ${E} ${I}`);
 
-               if (datos.length == 0) {
+               sumT += T;
+               sumE += E;
+               sumI += parseInt(I);
+
+               if (datos_copia.length == 0) {
                   break;
                } 
 
-               proceso = datos.shift();
+               proceso = datos_copia.shift();
             } else {
                tiempo++;
             }
          }
-         agregarDatosATabla(resultado);
+
+         mostrarPromedio(sumT, sumE, sumI);
+         agregarFCFS(resultado);
          break;
+      }
+      case 'SJN': {
+         let datos_copia = [...datos];
+         let datos_ordenados = [];
+
+         while (true) {
+            let proceso_ant = datos_copia.shift();
+            let tmp = [];
+            tmp.push(proceso_ant);
+
+            let index = 0;
+
+            while (true) {
+               if (datos_copia.length != 0 && datos_copia[index].split(' ')[0] === proceso_ant.split(' ')[0]) {
+                  tmp.push(datos_copia.shift());
+                  index = 0;
+               } else {
+                  break;
+               }
+               index++;
+            }
+
+            ordenarPorTiempoEjecucion(tmp);
+            datos_ordenados.push(...tmp);
+
+            if (datos_copia.length === 0) {
+               break;
+            }
+         }
+
+         let resultado = [];
+         let tiempo = 0;
+         let sumT = 0, sumE = 0, sumI = 0;
+
+         let proceso = datos_ordenados.shift();
+
+         while (true) {
+            if (proceso.split(' ')[0] <= tiempo) {
+               tiempo += parseInt(proceso.split(' ')[1]);
+
+               let T = tiempo - parseInt(proceso.split(' ')[0]);
+               let E = T - parseInt(proceso.split(' ')[1]);
+               let I = (parseInt(proceso.split(' ')[1]) / T).toFixed(2);
+
+               resultado.push(`${tiempo} ${T} ${E} ${I}`);
+
+               sumT += T;
+               sumE += E;
+               sumI += parseInt(I);
+
+               if (datos_ordenados.length == 0) break;
+
+               proceso = datos_ordenados.shift();
+            } else {
+               tiempo++;
+            }
+         }
+
+         mostrarPromedio(sumT, sumE, sumI);
+         agregarSJN(resultado);
+         break;
+      }
       default:
          break;
    }
 }
 
+function limpiar() {
+   tabla_algoritmo.forEach((tabla) => {
+      let filas = [...tabla.children];
+      
+      filas.forEach((fila) => {
+         let index = 0;
+         if (fila.children.length > 1) {
+            let columnas = [...fila.children];
+
+            columnas.forEach((columna) => {
+               if (index >= 4) {
+                  columna.textContent = "";
+               }
+               index++;
+            })
+         } 
+      })
+   });
+
+   resultadoT.textContent = "...";
+   resultadoE.textContent = "...";
+   resultadoI.textContent = "...";
+}
+
 let algoritmos = document.querySelectorAll('.algoritmo');
 let btnCorrer = document.querySelector('.btnCorrer');
+let btnLimpiar = document.querySelector('.btnLimpiar');
 let textoAlgoritmo = '';
 let verificarAlgoritmo = false;
 
@@ -211,4 +327,6 @@ btnCorrer.addEventListener('click', function(e) {
    } else {
       mostrarModal();
    }
-})
+});
+
+btnLimpiar.addEventListener('click', limpiar);
