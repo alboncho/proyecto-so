@@ -25,8 +25,8 @@ export class RenderGrafico {
          matriz.push(filas);
       }
 
-      this.elemento.style.gridTemplateColumns = `repeat(${columnas}, 10px)`;
-      this.elemento.style.gridTemplateRows = `repeat(${resultado.length}, 10px)`
+      this.elemento.style.gridTemplateColumns = `repeat(${columnas}, 11px)`;
+      this.elemento.style.gridTemplateRows = `repeat(${resultado.length}, 11px)`
 
       matriz.forEach(fila => {
          fila.forEach(columna => {
