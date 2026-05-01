@@ -1,0 +1,81 @@
+export class RenderGrafico {
+   constructor(_elemento) {
+      this.elemento = _elemento;
+   }
+
+   mostrarGrafico(resultado) {
+      let columnas = parseInt(resultado[resultado.length-1].fin);
+      let matriz = [];
+
+      let copia_resultado = [...resultado].reverse();
+      console.log("length resultado: ", resultado.length);
+      for (let i=resultado.length; i>0; i--) {
+         let filas = [];
+         let item = this.traerContenido(copia_resultado, i);
+         console.log("item : ", item.id);
+         for (let j=0; j<columnas; j++) {
+            if (j>=item.inicio && j<item.fin) {
+               filas.push("#");
+            } else if (j>=item.llegada && j<item.inicio) {
+               filas.push(1);
+            } else {
+               filas.push(0);
+            }
+         }
+         matriz.push(filas);
+      }
+
+      this.elemento.style.gridTemplateColumns = `repeat(${columnas}, 10px)`;
+      this.elemento.style.gridTemplateRows = `repeat(${resultado.length}, 10px)`
+
+      matriz.forEach(fila => {
+         fila.forEach(columna => {
+            let div = document.createElement('div');
+            
+            if (columna === "#") {
+               div.classList.add('bloque');
+            } else if (columna === 1) {
+               div.classList.add('espera');
+            } else {
+               div.classList.add('oculto');
+            }
+
+            this.elemento.appendChild(div);
+         })
+      })
+      
+      // this.mostrarEjes(resultado);
+   }
+
+   traerContenido(copia, index) {
+      for (let i=0; i<copia.length; i++) {
+         if (copia[i].id == index) {
+            return copia[i];
+         }
+      }
+   }
+
+   mostrarEjes(resultado) {
+      let bxEjeY = document.querySelector('.ejeY');
+      bxEjeY.style.gridTemplateRows = `repeat(${resultado.length}, 10px)`;
+      let numeros = [];
+
+      for (let i=resultado.length; i>0; i--) {
+         numeros.push(i);
+      }
+
+      numeros.forEach(numero => {
+         let div = document.createElement('div');
+         div.classList.add('celdaNumero');
+         div.textContent = numero;
+
+         bxEjeY.appendChild(div);
+      })
+   }
+
+   limpiar() {
+      [...this.elemento.children].forEach(hijos => {
+         hijos.remove();
+      });
+   }
+}

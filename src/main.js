@@ -5,12 +5,14 @@ import { SJNAlgoritmo }    from './algoritmos/SJNAlgoritmo.js';
 import { RenderTabla }   from './ui/RenderTabla.js';
 import { ModalController } from './ui/ModalController.js';
 import { RenderPromedio }  from './ui/RenderPromedio.js';
+import { RenderGrafico } from './ui/RenderGrafico.js';
 
 const reader = new LeerProceso();
 const parser = new ParsearProceso();
 const modal = new ModalController(document.querySelector('.bxModal'));
 const table = new RenderTabla(document.querySelectorAll('.tablaProcesos'));
 const results = new RenderPromedio();
+const grafico = new RenderGrafico(document.querySelector('.cuadriculas'));
 
 // Mapa de algoritmos: agregar uno nuevo = una linea aqui
 const algoritmos = {
@@ -46,6 +48,9 @@ document.querySelector('.btnCorrer').addEventListener('click', () => {
   table.limpiar();
   table.renderResultado(resultado);
   results.mostrarPromedio(resultado);
+
+  grafico.limpiar();
+  grafico.mostrarGrafico(resultado);
 });
 
 document.querySelector('.btnLimpiar').addEventListener('click', () => {

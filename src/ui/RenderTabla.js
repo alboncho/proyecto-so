@@ -33,31 +33,36 @@ export class RenderTabla {
 
    renderResultado(resultado) {
       let resultado_copia = [...resultado];
+      let index = 0;
 
-      this.tablas.forEach(function(tabla) {
+      this.tablas.forEach((tabla) => {
          let filas = tabla.children;
-
+         
          [...filas].forEach((fila) => {
             if (fila.children.length > 1) {
+               index++;
                let columnas = fila.children;
-               let TEI = 0;
-
-               let contenido = resultado_copia.shift();
-               let valores = [];
-
-               for (let valor in contenido) {
-                  valores.push(contenido[valor]);
-               }
+               
+               let TEI = ["fin", "T", "E", "I"];
+               let TEI_index = 0;
 
                [...columnas].forEach(columna => {
                   if (columna.textContent == "") {
-                     columna.textContent = valores[TEI];
-                     TEI++;
+                     columna.textContent = this.traerContendidoCorrepondiente(resultado_copia, index)[TEI[TEI_index]];
+                     TEI_index++;
                   }
                });
             }
          });
       });
+   }
+
+   traerContendidoCorrepondiente(copia, index) {
+      for (let i=0; i<copia.length; i++) {
+         if (copia[i].id === index) {
+            return copia[i];
+         }
+      }
    }
 
    limpiar() {

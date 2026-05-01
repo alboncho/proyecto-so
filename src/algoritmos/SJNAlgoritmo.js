@@ -5,25 +5,36 @@ export class SJNAlgoritmo extends Algoritmo {
       let datos_copia = [...datos];
       let datos_ordenados = [];
 
+      let _id = 0;
+
       while (true) {
          let proceso_ant = datos_copia.shift();
+
+         _id++;
+         proceso_ant += " " + _id.toString();
+
          let tmp = [];
          tmp.push(proceso_ant);
 
-         let index = 0;
-
          while (true) {
-            if (datos_copia.length != 0 && datos_copia[0].split(' ')[0] === proceso_ant.split(' ')[0]) {
-               tmp.push(datos_copia.shift());
-            } else break;
+            if (datos_copia.length == 0) break;
+
+            let item = datos_copia.shift();
+
+            if (item.split(' ')[0] === proceso_ant.split(' ')[0]) {
+               _id++;
+               item += " " + _id.toString();
+               tmp.push(item);
+            } else {
+               datos_copia.unshift(item);
+               break;
+            }
          }
 
          this.ordenarPorTiempoEjecucion(tmp);
          datos_ordenados.push(...tmp);
 
-         if (datos_copia.length === 0) {
-            break;
-         }
+         if (datos_copia.length === 0) break;
       }
 
       let resultado = [];
@@ -34,13 +45,16 @@ export class SJNAlgoritmo extends Algoritmo {
 
       while (true) {
          if (parseInt(proceso.split(' ')[0]) <= tiempo) {
+            let id = parseInt(proceso.split(' ')[3]);
+            let inicio = tiempo;
+            let llegada = parseInt(proceso.split(' ')[0]);
             tiempo += parseInt(proceso.split(' ')[1]);
 
             let T = tiempo - parseInt(proceso.split(' ')[0]);
             let E = T - parseInt(proceso.split(' ')[1]);
-            let I = parseInt((parseInt(proceso.split(' ')[1]) / T).toFixed(2));
+            let I = parseFloat((parseInt(proceso.split(' ')[1]) / T).toFixed(2));
 
-            resultado.push({ fin: tiempo, T, E, I });
+            resultado.push({ fin: tiempo, T, E, I, inicio, llegada, id });
 
             if (datos_ordenados.length == 0) break;
 
