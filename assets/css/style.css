@@ -5,6 +5,26 @@
    font-style: normal;
 }
 
+:root {
+
+   /* Background Gradient */
+   --bg-start: #1d6e58;
+   --bg-end: #145041;
+
+   /* Button Gradient */
+   --btn-start: #3ce995;
+   --btn-end: #2fc07a;
+   --btn-hover-start: #63f0ae;
+   --btn-hover-end: #3ce995;
+
+   /* Button Shadow Color */
+   --btn-shadow: #2aa86a;
+
+   /* Text Colors */
+   --text-color: white;
+   --label-opacity: 0.9;
+}
+
 * {
    margin: 0;
    padding: 0;
@@ -15,7 +35,7 @@
 }
 
 body {
-   background-color: #343047;
+   background: linear-gradient(135deg, #343047 0%, #32347a 100%);
    display: flex;
    flex-direction: column;
    justify-content: center;
@@ -68,20 +88,43 @@ body {
 }
 
 .bxBtn .btnCorrer {
-   background-color: #3CE995;
+   background: linear-gradient(180deg, var(--btn-start) 0%, var(--btn-end) 100%);
+   border: none;
+   border-radius: 12px;
+   cursor: pointer;
+   transition: all 100ms ease;
+   box-shadow: 0 8px 0 var(--btn-shadow), 0 12px 12px rgb(0 0 0 / .3);
+   padding: 20px 50px;
+   transform: translateY(0);
 }
 
 .bxBtn .btnCorrer:hover {
-   background-color: #33a86f;
+   background: linear-gradient(180deg, var(--btn-hover-start) 0%, var(--btn-hover-end) 100%);
+}
+
+.bxBtn .btnCorrer:active {
+   transform: translateY(6px);
+   box-shadow: 0 2px 0 var(--btn-shadow), 0 4px 8px rgb(0 0 0 / .3);
 }
 
 .bxBtn .btnLimpiar {
-   background-color: #333;
-   color: #fff;
+   background: linear-gradient(180deg, #e1ae73 0%, #c57c22 100%);
+   color: #333;
+   border: none;
+   border-radius: 12px;
+   transition: all 100ms ease;
+   box-shadow: 0 12px 0 #b37b36, 0 12px 12px rgb(0 0 0 / .3);
+   padding: 20px 50px;
+   transform: translateY(0);
 }
 
 .bxBtn .btnLimpiar:hover {
-   background-color: #5a5a5a;
+   background: linear-gradient(180deg, #e9aa5e 0%, #e6a14d 100%);
+}
+
+.bxBtn .btnLimpiar:active {
+   transform: translateY(6px);
+   box-shadow: 0 2px 0 #b37b36, 0 4px 8px rgb(0 0 0 / .3);
 }
 
 .bxPromedios {
@@ -189,20 +232,50 @@ body {
 }
 
 .bxGrafico .cuadriculas .bloque {
+   transition: 100ms linear;
    background-color: #3CE995;
    border: 1px solid rgb(0 0 0 / .3);
    box-shadow: 0 0 7px #3CE995;
 }
 
+
 .bxGrafico .cuadriculas .oculto {
+   transition: 100ms linear;
    background-color: transparent;
    /* border-right: 2px solid rgb(255 255 255 / .1); */
    /* border-left: 2px solid rgb(255 255 255 / .1); */
 }
 
+.bxGrafico .cuadriculas .celda.hover-activo {
+   background-color: #6f5bd3;
+}
+
+.bxGrafico .cuadriculas .final {
+   transition: 100ms linear;
+   background-color: #ff248a;;
+   border: 1px solid rgb(0 0 0 / .3);
+   box-shadow: 0 0 7px #ff248a;
+}
+
 .bxGrafico .cuadriculas .espera {
    background-color: rgb(0 0 0  / .3);
    border: 1px solid rgb(0 0 0 / .3);;
+}
+
+.bxInfo {
+   background-color: #32347a;
+   border-radius: 10px;
+   color: #c4c4c4;
+   position: relative;
+   top: 100px;
+   height: 100px;
+   padding: 20px;
+   box-shadow: 25px 25px 75px rgb(0 0 0 / .25),   
+               10px 10px 70px rgb(0 0 0 / .25), 
+               inset 5px 5px 10px rgb(0 0 0 / .5),
+               inset 5px 5px 20px rgb(255 255 255 / .2),
+               inset -5px -5px 15px rgb(0 0 0 / .75);
+
 }
 
 .bxModal .modal {

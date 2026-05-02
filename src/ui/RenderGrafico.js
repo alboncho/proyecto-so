@@ -14,7 +14,11 @@ export class RenderGrafico {
          let item = this.traerContenido(copia_resultado, i);
          for (let j=0; j<columnas; j++) {
             if (this.isRango(item, j)) {
-               filas.push("#");
+               if (this.isFinal(item, j)) {
+                  filas.push("x");
+               } else {
+                  filas.push("#");
+               }
             } else {
                filas.push(0);
             }
@@ -25,35 +29,70 @@ export class RenderGrafico {
       this.elemento.style.gridTemplateColumns = `repeat(${columnas}, 11px)`;
       this.elemento.style.gridTemplateRows = `repeat(${resultado.length}, 11px)`
 
+      let contador_id = 1;
+
       matriz.forEach(fila => {
          fila.forEach(columna => {
             let div = document.createElement('div');
+            div.setAttribute('data-id', contador_id);
+            div.classList.add('celda');
             
-            if (columna === "#") {
+            div.addEventListener('click', (e) => {this.mostrarInfo(e, copia_resultado)});
+            
+            if (columna === "#") 
                div.classList.add('bloque');
-            } else {
+            else if (columna === "x") 
+               div.classList.add('final');
+            else 
                div.classList.add('oculto');
-            }
-
+            
             this.elemento.appendChild(div);
          })
+         contador_id++;
       })
       
+      this.ilumiinarFila();
       // this.mostrarEjes(resultado);
+   }
+
+   ilumiinarFila() {
+      const bloques = document.querySelectorAll('.celda');
+
+      bloques.forEach(bloque => {
+         bloque.addEventListener('mouseenter', () => {
+            const id = bloque.dataset.id;
+
+            document.querySelectorAll(`.celda[data-id="${id}"]`).forEach(e => {
+               if (!e.classList.contains('bloque') && !e.classList.contains('final')) e.classList.add('hover-activo');
+            });
+         })
+
+         bloque.addEventListener('mouseleave', () => {
+            document.querySelectorAll('.hover-activo').forEach(e => e.classList.remove('hover-activo'));
+         })
+      })
+   }
+
+   isFinal(item, j) {
+      if (j === parseInt(item.fin-1)) return true;
+      return false;
+   }
+
+   mostrarInfo(e, copia) {
+      console.log("click en ", e.target.classList);
    }
 
    isRango(item, j) {
       if (typeof item.inicio === "string") {
          let array = item.inicio.split(',');
          for (let i=0; i<array.length; i++) {
-            if (parseInt(array[i]) === j) return true;
+            if (parseInt(array[i]) == j && j < item.fin) return true;
          }
          return false;
       } else {
-         if (j >= parseInt(item.inicio) && j < item.fin) return true;
+         if (j >= parseInt(item.inicio) && j < (item.fin)) return true;
          return false;
       }
-
    }
 
    traerContenido(copia, index) {

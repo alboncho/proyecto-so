@@ -7,6 +7,7 @@ import { RenderTabla }   from './ui/RenderTabla.js';
 import { ModalController } from './ui/ModalController.js';
 import { RenderPromedio }  from './ui/RenderPromedio.js';
 import { RenderGrafico } from './ui/RenderGrafico.js';
+import { PrioridadAlgoritmo } from './algoritmos/PrioridadAlgoritmo.js';
 
 const reader = new LeerProceso();
 const parser = new ParsearProceso();
@@ -20,6 +21,7 @@ const algoritmos = {
    FCFS: new FCFSAlgoritmo(),
    SJN: new SJNAlgoritmo(),
    RR: new RRAlgoritmo(),
+   Prioridad: new PrioridadAlgoritmo()
 };
 
 const datos = parser.parse(await reader.read());

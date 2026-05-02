@@ -63,8 +63,6 @@ export class RRAlgoritmo extends Algoritmo {
                   array_proceso[1] = 0;
                   proceso = array_proceso.join(' ');
 
-                  console.log("proceso ante", proceso);
-
                   if (proceso.split(' ').length < 5) {
                      for (let i=tiempo; i<(tiempo + aux_rafaga); i++) {
                         if (i == tiempo) {
@@ -72,8 +70,6 @@ export class RRAlgoritmo extends Algoritmo {
                         } else {
                            proceso += "," + i;
                         }
-
-                        console.log("proceso en for", proceso);
                      }
                   } else {
                      for (let i=tiempo; i<(tiempo +  aux_rafaga); i++) {
@@ -88,7 +84,7 @@ export class RRAlgoritmo extends Algoritmo {
                   let id = parseInt(array_proceso[3]);
                   const T = tiempo - parseInt(array_proceso[0]);
                   const E = T - this.traerRafaga(datos, array_proceso[3]);
-                  const I = this.traerRafaga(datos, array_proceso[3]) / T;
+                  const I = (this.traerRafaga(datos, array_proceso[3]) / T).toFixed(3);
 
                   resultado.push({ fin: tiempo, T, E, I, inicio, llegada, id });
                   this.actualizarCola(cola, copia, tiempo);
