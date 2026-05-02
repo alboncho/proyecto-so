@@ -24,11 +24,7 @@
             <button class="btnLimpiar">Limpiar</button>
          </div>
       </section>
-
-      <div class="bxPromedios">
-         Promedio <span class="promedioT">T:</span><span class="resultadoT">...</span> <span class="promedioE">E:</span><span class="resultadoE">...</span> <span class="promedioI">I:</span><span class="resultadoI">...</span>
-      </div>
-   
+      
       <section class="bxProcesos">
          <table class="tablaProcesos">
             <tr>
@@ -55,18 +51,32 @@
             </tr>
          </table>
       </section>
+      
+      <div class="bxPromedios">
+         <table class="tablaPromedios">
+            <tr>
+               <td class="bgTransparente"># Proceso</td>
+               <td class="bgTransparente">t<sub>i</sub></td>
+               <td class="bgTransparente">t</td>
+               <td class="bgTransparente">prioridad</td>
+               <td class="resultadoT">34</td>
+               <td class="resultadoE">43</td>
+               <td class="resultadoI">34</td>
+            </tr>
+         </table>
+      </div>
 
       <section class="bxGrafico">
          <div class="cuadriculas"></div>
       </section>
-
+      
       <section class="bxInfo">
-         <span class="txtNroProceso"># Proceso: 3</span> <span class="txtInicio">Tiempo de inicio: 3</span> <span class="txtEjecucion">Tiempo ejecucion: 3</span> <span class="txtPrioridad">Prioridad: 19</span> <br> <span class="txtFinal">Tiempo final: 343</span> <span class="txtT">T: 324</span> <span class="txtE">E: 3434</span> <span class="txtI">I: 342.34</span>
+         #<span class="txtNroProceso"></span> T<sub>i</sub>: <span class="txtInicio"></span> T<sub>t</sub>: <span class="txtEjecucion"></span> Prioridad: <span class="txtPrioridad"></span> <br> <span class="clrRojo"> T<sub>f: </sub></span><span class="txtFinal"></span> <span class="clrRojo">T: </span><span class="txtT"></span> <span class="clrRojo">E: </span><span class="txtE"></span> <span class="clrRojo">I: </span><span class="txtI"></span>
       </section>
    </div>
-
+   
    <div class="espacio" style="height: 100vh;"></div>
-
+   
    <div class="bxModal">
       <div class="modal">
          ¡Seleccione un algoritmo!

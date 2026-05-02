@@ -29,7 +29,7 @@ export class RenderGrafico {
       this.elemento.style.gridTemplateColumns = `repeat(${columnas}, 11px)`;
       this.elemento.style.gridTemplateRows = `repeat(${resultado.length}, 11px)`
 
-      let contador_id = 1;
+      let contador_id = resultado.length;
 
       matriz.forEach(fila => {
          fila.forEach(columna => {
@@ -48,7 +48,7 @@ export class RenderGrafico {
             
             this.elemento.appendChild(div);
          })
-         contador_id++;
+         contador_id--;
       })
       
       this.ilumiinarFila();
@@ -79,7 +79,25 @@ export class RenderGrafico {
    }
 
    mostrarInfo(e, copia) {
-      console.log("click en ", e.target.classList);
+      let txtNroProceso = document.querySelector('.txtNroProceso');
+      let txtInicio = document.querySelector('.txtInicio');
+      let txtEjecucion = document.querySelector('.txtEjecucion');
+      let txtPrioridad = document.querySelector('.txtPrioridad');
+      let txtFinal = document.querySelector('.txtFinal');
+      let txtT = document.querySelector('.txtT');
+      let txtE = document.querySelector('.txtE');
+      let txtI = document.querySelector('.txtI');
+
+
+      console.log("id ", e.target.getAttribute('data-id'));
+      txtNroProceso.textContent = this.traerContenido(copia, e.target.getAttribute('data-id')).id;
+      txtInicio.textContent = this.traerContenido(copia, e.target.getAttribute('data-id')).llegada;
+      txtEjecucion.textContent =this.traerContenido(copia, e.target.getAttribute('data-id')).rafaga;
+      txtPrioridad.textContent = this.traerContenido(copia, e.target.getAttribute('data-id')).prioridad;
+      txtFinal.textContent = this.traerContenido(copia, e.target.getAttribute('data-id')).fin;
+      txtT.textContent = this.traerContenido(copia, e.target.getAttribute('data-id')).T;
+      txtE.textContent = this.traerContenido(copia, e.target.getAttribute('data-id')).E;
+      txtI.textContent = this.traerContenido(copia, e.target.getAttribute('data-id')).I;
    }
 
    isRango(item, j) {

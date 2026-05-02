@@ -46,6 +46,8 @@ export class SJNAlgoritmo extends Algoritmo {
       while (true) {
          if (parseInt(proceso.split(' ')[0]) <= tiempo) {
             let id = parseInt(proceso.split(' ')[3]);
+            let prioridad = parseInt(proceso.split(' ')[2]);
+            let rafaga = parseInt(proceso.split(' ')[1]);
             let inicio = tiempo;
             let llegada = parseInt(proceso.split(' ')[0]);
             tiempo += parseInt(proceso.split(' ')[1]);
@@ -54,7 +56,7 @@ export class SJNAlgoritmo extends Algoritmo {
             let E = T - parseInt(proceso.split(' ')[1]);
             let I = parseFloat((parseInt(proceso.split(' ')[1]) / T).toFixed(2));
 
-            resultado.push({ fin: tiempo, T, E, I, inicio, llegada, id });
+            resultado.push({ fin: tiempo, T, E, I, inicio, llegada, id, prioridad, rafaga });
 
             if (datos_ordenados.length == 0) break;
 

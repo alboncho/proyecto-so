@@ -37,6 +37,9 @@ export class PrioridadAlgoritmo extends Algoritmo {
 
                proceso = this.agregarInicio(proceso, tiempo);
 
+               let rafaga = parseInt(proceso.split(' '[1]));
+               let prioridad = parseInt(proceso.split(' ')[2]);
+
                tiempo++;
                let inicio = proceso.split(' ')[4];
                let llegada = parseInt(proceso.split(' ')[0]);
@@ -44,7 +47,7 @@ export class PrioridadAlgoritmo extends Algoritmo {
                let E = T - this.traerRafaga(array[3], datos);
                let I = parseFloat((this.traerRafaga(array[3], datos) / T).toFixed(3));
 
-               resultado.push({ fin: tiempo, T, E, I, llegada, inicio, id });
+               resultado.push({ fin: tiempo, T, E, I, llegada, inicio, id, rafaga, prioridad });
 
                this.actualizarCola(copia, cola, tiempo);
             }

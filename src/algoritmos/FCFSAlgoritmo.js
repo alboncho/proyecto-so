@@ -14,6 +14,8 @@ export class FCFSAlgoritmo extends Algoritmo {
             id++;
             let inicio = tiempo;
             let llegada = parseInt(proceso.split(' ')[0]);
+            let prioridad = parseInt(proceso.split(' ')[2]);
+            let rafaga = parseInt(proceso.split(' ')[1]);
             tiempo += parseInt(proceso.split(' ')[1]);
 
             const T = tiempo - parseInt(proceso.split(' ')[0]);
@@ -22,7 +24,7 @@ export class FCFSAlgoritmo extends Algoritmo {
                (parseInt(proceso.split(' ')[1]) / T).toFixed(2)
             );
 
-            resultado.push({ fin: tiempo, T, E, I, inicio, llegada, id });
+            resultado.push({ fin: tiempo, T, E, I, inicio, llegada, id, prioridad });
 
             if (!copia.length) break;
 
