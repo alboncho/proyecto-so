@@ -34,8 +34,9 @@ body {
 .bxControles {
    /* margin-top: 20px; */
    display: flex;
+   flex-wrap: wrap;
    justify-content: space-between;
-   gap: 50px;
+   gap: 30px;
 }
 
 .bxControles .algoritmos {
@@ -162,7 +163,7 @@ body {
    width: 100%;
    height: 400px;
    overflow: scroll;
-   background-color: #343047;
+   background-color: #32347a;
 }
 
 /* .bxGrafico .ejeY {
@@ -184,7 +185,6 @@ body {
 .bxGrafico .cuadriculas {
    padding: 0 0 30px 0;
    display: grid;
-   background-color: #32347a;
    /* grid-gap: 1px; */
 }
 

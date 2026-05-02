@@ -2,6 +2,7 @@ import { LeerProceso } from './data/LeerProceso.js';
 import { ParsearProceso } from './data/ParsearProceso.js';
 import { FCFSAlgoritmo }   from './algoritmos/FCFSAlgoritmo.js';
 import { SJNAlgoritmo }    from './algoritmos/SJNAlgoritmo.js';
+import { RRAlgoritmo } from './algoritmos/RRAlgoritmo.js';
 import { RenderTabla }   from './ui/RenderTabla.js';
 import { ModalController } from './ui/ModalController.js';
 import { RenderPromedio }  from './ui/RenderPromedio.js';
@@ -18,6 +19,7 @@ const grafico = new RenderGrafico(document.querySelector('.cuadriculas'));
 const algoritmos = {
    FCFS: new FCFSAlgoritmo(),
    SJN: new SJNAlgoritmo(),
+   RR: new RRAlgoritmo(),
 };
 
 const datos = parser.parse(await reader.read());

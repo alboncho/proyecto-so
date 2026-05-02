@@ -8,16 +8,13 @@ export class RenderGrafico {
       let matriz = [];
 
       let copia_resultado = [...resultado].reverse();
-      console.log("length resultado: ", resultado.length);
+
       for (let i=resultado.length; i>0; i--) {
          let filas = [];
          let item = this.traerContenido(copia_resultado, i);
-         console.log("item : ", item.id);
          for (let j=0; j<columnas; j++) {
-            if (j>=item.inicio && j<item.fin) {
+            if (this.isRango(item, j)) {
                filas.push("#");
-            } else if (j>=item.llegada && j<item.inicio) {
-               filas.push(1);
             } else {
                filas.push(0);
             }
@@ -34,8 +31,6 @@ export class RenderGrafico {
             
             if (columna === "#") {
                div.classList.add('bloque');
-            } else if (columna === 1) {
-               div.classList.add('espera');
             } else {
                div.classList.add('oculto');
             }
@@ -45,6 +40,20 @@ export class RenderGrafico {
       })
       
       // this.mostrarEjes(resultado);
+   }
+
+   isRango(item, j) {
+      if (typeof item.inicio === "string") {
+         let array = item.inicio.split(',');
+         for (let i=0; i<array.length; i++) {
+            if (parseInt(array[i]) === j) return true;
+         }
+         return false;
+      } else {
+         if (j >= parseInt(item.inicio) && j < item.fin) return true;
+         return false;
+      }
+
    }
 
    traerContenido(copia, index) {
