@@ -8,8 +8,10 @@
 :root {
 
    /* Background Gradient */
-   --bg-start: #1d6e58;
-   --bg-end: #145041;
+   --clr-primario: #343047;
+   --clr-secundario: #32347a;
+
+   --clr-verde: #3ce995;
 
    /* Button Gradient */
    --btn-start: #3ce995;
@@ -43,11 +45,68 @@ body {
    min-height: 100vh;
 }
 
+.menu {
+   background-color: #222;
+   width: 100%;
+   display: flex;
+   height: max-content;
+   padding: 13px 20px;
+}
+
+.menu ul {
+   list-style: none;
+   display: flex;
+   height: max-content;
+}
+
+.menu a {
+   position: relative;
+   color: rgb(255 255 255 / .6);
+   text-decoration: none;
+   padding: 15px 14px;
+   border-top-right-radius: 12px;
+   border-top-left-radius: 12px;
+}
+
+.menu a.active {
+   background-color: var(--clr);
+   color: #fff;   
+}
+
+.menu a.active::before {
+   content: '';
+   position: absolute;
+   left: -20px;
+   bottom: 0;
+   width: 20px;
+   height: 20px;
+   border-bottom-right-radius: 20px;
+   box-shadow: 5px 5px 0 5px var(--clr);
+}
+
+.menu a.active::after {
+   content: '';
+   position: absolute;
+   left: 100%;
+   bottom: 0;
+   width: 20px;
+   height: 20px;
+   border-bottom-left-radius: 20px;
+   box-shadow: -5px 5px 0 5px var(--clr);
+}
+
+.titulo {
+   font-size: 2rem;
+   color: var(--clr-verde);
+   margin: 2rem;
+   text-decoration: underline;
+}
+
 .contenedor {
    display: flex;
    flex-direction: column;
    gap: 30px;
-   width: 100%;
+   max-width: 1000px;
    padding: 30px;
 }
 
@@ -74,6 +133,11 @@ body {
 .algoritmo.active {
    background-color: #646464;
    color: #d5d5d5;
+}
+
+.bxControles {
+   display: flex;
+   flex-direction: column;
 }
 
 .bxBtn {
@@ -126,7 +190,7 @@ body {
    transform: translateY(6px);
    box-shadow: 0 2px 0 #b37b36, 0 4px 8px rgb(0 0 0 / .3);
 }
-
+/* 
 .bxPromedios {
    color: #fff;
    overflow: scroll;
@@ -134,7 +198,7 @@ body {
 
 .bxPromedios .promedioT, .bxPromedios .promedioE, .bxPromedios .promedioI {
    color: #ff248a;
-}
+} */
 
 .bxProcesos {
    position: relative;
@@ -188,8 +252,15 @@ body {
    font-weight: bold;
 }
 
+.bxPromedios {
+   position: relative; 
+   top: -30px;
+   width: 412px;
+}
+
 .bxPromedios .tablaPromedios {
    border-collapse: collapse;
+   width: 100%;
    color: #fff;
 }
 
@@ -222,14 +293,22 @@ body {
    position: relative;
    width: 100%;
    height: 400px;
-   overflow: scroll;
    background-color: #32347a;
-
+   
    box-shadow: 10px 10px 30px rgb(0 0 0 / .25),
-               5px 5px 20px rgb(0 0 0 / .25),
-               inset 3px 3px 7px rgb(0 0 0 / .5),
-               inset 6px 6px 15px rgb(255 255 255 / .2),
-               inset -3px -3px 15px rgb(0 0 0 / .7);
+   5px 5px 20px rgb(0 0 0 / .25),
+   inset 3px 3px 7px rgb(0 0 0 / .5),
+   inset 6px 6px 15px rgb(255 255 255 / .2),
+   inset -3px -3px 15px rgb(0 0 0 / .7);
+}
+
+.bxCuadriculas {
+   position: absolute;
+   top: 0;
+   left: 0;
+   overflow: scroll;
+   width: 100%;
+   height: 100%;
 }
 
 /* .bxGrafico .ejeY {
@@ -247,8 +326,22 @@ body {
       text-align: center; 
       /* background-color: purple;
       } */
+
+.tituloGrafico {
+   position: absolute;
+   left: 0;
+   top: 0;
+   z-index: 2;
+   color: rgb(255 255 255 / .5);
+   font-size: 28px;
+   padding: 20px;
+}
       
 .bxGrafico .cuadriculas {
+   position: absolute;
+   left: 0;
+   top: 0;
+   z-index: 1;
    padding: 0 0 30px 0;
    display: grid;
    /* grid-gap: 1px; */
@@ -290,8 +383,9 @@ body {
    border-radius: 10px;
    color: #c4c4c4;
    position: relative;
-   height: 100px;
+   height: max-content;
    padding: 20px;
+   width: max-content;
    box-shadow: 25px 25px 75px rgb(0 0 0 / .25),   
                10px 10px 70px rgb(0 0 0 / .25), 
                inset 5px 5px 10px rgb(0 0 0 / .5),
@@ -300,8 +394,16 @@ body {
 
 }
 
+.tituloResumen {
+   color: rgb(255 255 255 / .5);
+}
+
 .bxInfo .clrRojo {
    color: #ff248a;
+}
+
+.bxInfo .clrNaranja {
+   color: #f1a762;
 }
 
 .bxModal .modal {

@@ -51,6 +51,7 @@ export class RenderGrafico {
          contador_id--;
       })
       
+      this.scroll(document.querySelector('.bxCuadriculas'));
       this.ilumiinarFila();
       // this.mostrarEjes(resultado);
    }
@@ -71,6 +72,10 @@ export class RenderGrafico {
             document.querySelectorAll('.hover-activo').forEach(e => e.classList.remove('hover-activo'));
          })
       })
+   }
+
+   scroll(el) {
+      el.scrollTop = el.scrollHeight - el.clientHeight;
    }
 
    isFinal(item, j) {

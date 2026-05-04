@@ -24,7 +24,7 @@ export class FCFSAlgoritmo extends Algoritmo {
                (parseInt(proceso.split(' ')[1]) / T).toFixed(2)
             );
 
-            resultado.push({ fin: tiempo, T, E, I, inicio, llegada, id, prioridad });
+            resultado.push({ fin: tiempo, T, E, I, inicio, llegada, id, prioridad, rafaga });
 
             if (!copia.length) break;
 
