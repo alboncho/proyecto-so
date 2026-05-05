@@ -105,3 +105,35 @@ body {
    max-width: 1000px;
    padding: 2rem;
 }
+
+.bxRam {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;;
+   width: 100%;
+}
+
+.bxRam .imgRam {
+   width: 100px;
+   height: 300px;
+   background-image: url('../img/ram.png');
+}
+
+.bxRam .bxDatos {
+   background-color: #e2316c;
+   width: 200px;
+   height: 200px;
+   border-radius: 10px;
+
+   box-shadow: 25px 25px 74px rgb(0 0 0 / .25),
+               10px 10px 70px rgb(0 0 0 / .25),
+               inset 5px 5px 10px rgb(0 0 0 / .5),
+               inset 5px 5px 20px rgb(255 255 255 / 0.2),
+               inset -5px -5px 15px rgb(0 0 0 / .76);
+}
+
+.bxRam .bxDatos .subtitulo {
+   color: rgb(255 255 255 / .56);
+   font-size: 1.2rem;
+   padding: 10px;
+}

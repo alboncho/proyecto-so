@@ -143,12 +143,16 @@ body {
 .bxBtn {
    display: flex;
    gap: 10px;
+   align-items: center;
 }
 
 .bxControles .bxBtn button {
    padding: 5px 10px;
    text-decoration: none;
    cursor: pointer;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 
 .bxBtn .btnCorrer {
@@ -171,6 +175,16 @@ body {
    box-shadow: 0 2px 0 var(--btn-shadow), 0 4px 8px rgb(0 0 0 / .3);
 }
 
+.bxBtn .btnCorrer .iconoCorrer {
+   display: inline-block;
+   width: 20px;
+   height: 20px;
+}
+
+.bxBtn .btnCorrer .iconoCorrer img {
+   width: 100%;
+}
+
 .bxBtn .btnLimpiar {
    background: linear-gradient(180deg, #e1ae73 0%, #c57c22 100%);
    color: #333;
@@ -190,6 +204,29 @@ body {
    transform: translateY(6px);
    box-shadow: 0 2px 0 #b37b36, 0 4px 8px rgb(0 0 0 / .3);
 }
+
+.bxBtn .spriteDownload {
+   background-image: url('../img/download-sprite.png');
+   width: 32px;
+   height: 32px;
+   cursor: pointer;
+   background-position: 0 -96px;
+}
+
+.bxBtn .spriteDownload.activeSprite {
+   animation: animate 1s steps(4) infinite;
+}
+
+@keyframes animate {
+   from {
+      background-posiiton: 0;
+   }
+
+   to {
+      background-position: 0 -128px;
+   }
+}
+
 /* 
 .bxPromedios {
    color: #fff;

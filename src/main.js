@@ -43,20 +43,25 @@ let textoAlgoritmo;
 });
 
 document.querySelector('.btnCorrer').addEventListener('click', () => {
-  const seleccionado = textoAlgoritmo;
+   const seleccionado = textoAlgoritmo;
 
-  if (!seleccionado) { modal.mostrar(); return; }
+   if (!seleccionado) { modal.mostrar(); return; }
 
-  const resultado = algoritmos[seleccionado].calcular(datos);
+   const resultado = algoritmos[seleccionado].calcular(datos);
 
-  table.limpiar();
-  table.renderResultado(resultado);
-  results.mostrarPromedio(resultado);
+   table.limpiar();
+   table.renderResultado(resultado);
+   results.mostrarPromedio(resultado);
 
-  grafico.limpiar();
-  grafico.mostrarGrafico(resultado);
+   grafico.limpiar();
+   grafico.mostrarGrafico(resultado);
 });
 
 document.querySelector('.btnLimpiar').addEventListener('click', () => {
    table.limpiar();
 });
+
+document.querySelector('.spriteDownload').addEventListener('click', (e) => {
+   e.target.style.backgroundPosition = `0 0`;
+   e.target.classList.add('activeSprite');
+})
