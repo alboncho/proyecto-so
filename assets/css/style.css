@@ -41,25 +41,71 @@ body {
    display: flex;
    flex-direction: column;
    justify-content: center;
-   align-items: center;
    min-height: 100vh;
+   /* overflow: hidden; */
 }
 
+/* GENERALES */
+.ocultar {
+   display: none;
+}
+
+.visible {
+   display: inline-block;
+}
+
+/* MENU */
 .menu {
    background-color: #222;
    width: 100%;
-   display: flex;
    height: max-content;
    padding: 13px 20px;
 }
 
-.menu ul {
+.bxMenuDesplegable .iconoMenu {
+   cursor: pointer;;
+}
+
+.bxMenuDesplegable .contenidoMenu {
+   max-height: 0;
+   overflow: hidden;
+   opacity: 0;
+   transition: max-height 300ms ease, opacity 100ms ease;
+}
+
+.bxMenuDesplegable .contenidoMenu.active {
+   max-height: 400px;
+   opacity: 1;
+   transition: max-height 100ms ease, opacity 400ms ease-out;
+}
+
+.bxMenuDesplegable .contenidoMenu ul {
+   list-style: none;
+}
+
+.bxMenuDesplegable .contenidoMenu ul li a {
+   display: inline-block;
+   text-decoration: none;
+   color: #fff;
+   padding: 10px 0;
+}
+
+.bxMenuDesplegable .contenidoMenu ul li:hover {
+   background-color: rgb(255 255 255 / .8);
+}
+
+.bxMenuDesplegable .contenidoMenu ul li:hover a {
+   color: #333;
+}
+
+
+.menu .bxMenu {
    list-style: none;
    display: flex;
    height: max-content;
 }
 
-.menu a {
+.menu .bxMenu a {
    position: relative;
    color: rgb(255 255 255 / .6);
    text-decoration: none;
@@ -68,12 +114,12 @@ body {
    border-top-left-radius: 12px;
 }
 
-.menu a.active {
+.menu .bxMenu a.active {
    background-color: var(--clr);
    color: #fff;   
 }
 
-.menu a.active::before {
+.menu .bxMenu a.active::before {
    content: '';
    position: absolute;
    left: -20px;
@@ -84,7 +130,7 @@ body {
    box-shadow: 5px 5px 0 5px var(--clr);
 }
 
-.menu a.active::after {
+.menu .bxMenu a.active::after {
    content: '';
    position: absolute;
    left: 100%;
@@ -108,7 +154,9 @@ body {
    gap: 30px;
    max-width: 1000px;
    padding: 30px;
+   overflow: scroll;
 }
+
 
 .bxControles {
    /* margin-top: 20px; */
@@ -221,7 +269,7 @@ body {
    from {
       background-posiiton: 0;
    }
-
+   
    to {
       background-position: 0 -128px;
    }
@@ -231,12 +279,12 @@ body {
 .bxPromedios {
    color: #fff;
    overflow: scroll;
-}
-
-.bxPromedios .promedioT, .bxPromedios .promedioE, .bxPromedios .promedioI {
-   color: #ff248a;
-} */
-
+   }
+   
+   .bxPromedios .promedioT, .bxPromedios .promedioE, .bxPromedios .promedioI {
+      color: #ff248a;
+      } */
+      
 .bxProcesos {
    position: relative;
    height: 350px;
@@ -245,11 +293,15 @@ body {
    flex-wrap: wrap;
    justify-content: space-between;
    gap: 0px;
-   overflow: scroll;
+   overflow-x: hidden;
    /* background-color: #38374e; */
    /* background-color: orange; */
-}
 
+   /* scrollbar-width: thin;
+   scrollbar-color: orange red;
+   scrollbar-gutter: stable both-edges; */
+}
+      
 .tablaProcesos {
    border: 1px solid #fff;
    border-collapse: collapse;
@@ -452,4 +504,14 @@ body {
    justify-content: center;
    align-items: center;
    border-radius: 10px;
+}
+
+@media (max-width: 665px) {
+   .menu .bxMenu {
+      display: none;
+   }
+
+   .menu .bxMenuDesplegable {
+      display: inline-block;
+   }
 }

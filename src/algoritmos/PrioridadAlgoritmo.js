@@ -18,9 +18,9 @@ export class PrioridadAlgoritmo extends Algoritmo {
             let proceso = cola.shift();
 
             if (parseInt(proceso.split(' ')[1]) > 1) {
-               let array = proceso.split(' ');
-               array[1] = parseInt(array[1]) - 1;
-               proceso = array.join(' ');
+               let array_proceso = proceso.split(' ');
+               array_proceso[1] = parseInt(array_proceso[1]) - 1;
+               proceso = array_proceso.join(' ');
 
                proceso = this.agregarInicio(proceso, tiempo);
 
@@ -30,22 +30,22 @@ export class PrioridadAlgoritmo extends Algoritmo {
                this.actualizarCola(copia, cola, tiempo);
 
             } else {
-               let array = proceso.split(' ');
-               array[1] = 0;
-               proceso = array.join(' ');
-               let id = parseInt(array[3]);
+               let array_proceso = proceso.split(' ');
+               array_proceso[1] = 0;
+               proceso = array_proceso.join(' ');
+               let id = parseInt(array_proceso[3]);
 
                proceso = this.agregarInicio(proceso, tiempo);
 
-               let rafaga = parseInt(proceso.split(' '[1]));
+               let rafaga = this.traerRafaga(id, datos);
                let prioridad = parseInt(proceso.split(' ')[2]);
 
                tiempo++;
                let inicio = proceso.split(' ')[4];
                let llegada = parseInt(proceso.split(' ')[0]);
                let T =  tiempo - llegada;
-               let E = T - this.traerRafaga(array[3], datos);
-               let I = parseFloat((this.traerRafaga(array[3], datos) / T).toFixed(3));
+               let E = T - this.traerRafaga(id, datos);
+               let I = parseFloat((this.traerRafaga(id, datos) / T).toFixed(3));
 
                resultado.push({ fin: tiempo, T, E, I, llegada, inicio, id, rafaga, prioridad });
 
@@ -73,7 +73,7 @@ export class PrioridadAlgoritmo extends Algoritmo {
 
    traerRafaga(id, datos) {
       for (let i=0; i<datos.length; i++) {
-         if (datos[i].split(' ')[3] === id) {
+         if (parseInt(datos[i].split(' ')[3]) === id) {
             return parseInt(datos[i].split(' ')[1]);
          }
       }

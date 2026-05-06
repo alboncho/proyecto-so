@@ -65,3 +65,7 @@ document.querySelector('.spriteDownload').addEventListener('click', (e) => {
    e.target.style.backgroundPosition = `0 0`;
    e.target.classList.add('activeSprite');
 })
+
+document.querySelector('.iconoMenu').addEventListener('click', () => {
+   document.querySelector('.contenidoMenu').classList.toggle('active');
+});

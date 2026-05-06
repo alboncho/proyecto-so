@@ -59,11 +59,12 @@ export class RRAlgoritmo extends Algoritmo {
                   cola.push(proceso);
                } else {
                   let array_proceso = proceso.split(' ');
+                  let id = parseInt(proceso.split(' ')[3]);
                   let aux_rafaga = parseInt(proceso.split(' ')[1]);
                   array_proceso[1] = 0;
                   proceso = array_proceso.join(' ');
 
-                  let rafaga = parseInt(proceso.split(' ')[1]);
+                  let rafaga = this.traerRafaga(id, datos);
                   let prioridad = parseInt(proceso.split(' ')[2]);
 
                   if (proceso.split(' ').length < 5) {
@@ -84,10 +85,9 @@ export class RRAlgoritmo extends Algoritmo {
 
                   let inicio = proceso.split(' ')[4];
                   let llegada = parseInt(array_proceso[0]);
-                  let id = parseInt(array_proceso[3]);
                   const T = tiempo - parseInt(array_proceso[0]);
-                  const E = T - this.traerRafaga(datos, array_proceso[3]);
-                  const I = (this.traerRafaga(datos, array_proceso[3]) / T).toFixed(3);
+                  const E = T - this.traerRafaga(id, datos);
+                  const I = (this.traerRafaga(id, datos) / T).toFixed(3);
 
                   resultado.push({ fin: tiempo, T, E, I, inicio, llegada, id, rafaga, prioridad });
                   this.actualizarCola(cola, copia, tiempo);
@@ -104,9 +104,9 @@ export class RRAlgoritmo extends Algoritmo {
       return resultado;
    }
 
-   traerRafaga(datos, id) {
+   traerRafaga(id, datos) {
       for (let i=0; i<datos.length; i++) {
-         if (datos[i].split(' ')[3] == parseInt(id)) {
+         if (parseInt(datos[i].split(' ')[3]) == id) {
             return parseInt(datos[i].split(' ')[1]);
          }
       }
