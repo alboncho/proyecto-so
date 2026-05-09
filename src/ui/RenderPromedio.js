@@ -17,8 +17,14 @@ export class RenderPromedio {
          sumI += parseInt(resultado.I);
       });
 
-      this.ctnT.textContent = (sumT / copia_resultado.length).toFixed(2);
-      this.ctnE.textContent = (sumE / copia_resultado.length).toFixed(2);
-      this.ctnI.textContent = (sumI / copia_resultado.length).toFixed(2);
+      sumT = (sumT / copia_resultado.length).toFixed(3);
+      sumE = (sumE / copia_resultado.length).toFixed(3);
+      sumI = (sumI / copia_resultado.length).toFixed(3);
+
+      this.ctnT.textContent = sumT;
+      this.ctnE.textContent = sumE;
+      this.ctnI.textContent = sumI;
+
+      return { T: sumT, E: sumE, I: sumI };
    }
 }

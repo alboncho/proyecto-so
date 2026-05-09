@@ -8,13 +8,15 @@ import { ModalController } from './ui/ModalController.js';
 import { RenderPromedio }  from './ui/RenderPromedio.js';
 import { RenderGrafico } from './ui/RenderGrafico.js';
 import { PrioridadAlgoritmo } from './algoritmos/PrioridadAlgoritmo.js';
+import { RenderRanking } from './ui/RenderRanking.js';
 
 const reader = new LeerProceso();
 const parser = new ParsearProceso();
 const modal = new ModalController(document.querySelector('.bxModal'));
 const table = new RenderTabla(document.querySelectorAll('.tablaProcesos'));
-const results = new RenderPromedio();
+const promedio = new RenderPromedio();
 const grafico = new RenderGrafico(document.querySelector('.cuadriculas'));
+const ranking = new RenderRanking(document.querySelector('.tablaRanking'));
 
 // Mapa de algoritmos: agregar uno nuevo = una linea aqui
 const algoritmos = {
@@ -28,7 +30,7 @@ const datos = parser.parse(await reader.read());
 table.renderProcesos(datos);
 
 let bxsAlgoritmos = document.querySelectorAll('.algoritmo');
-let textoAlgoritmo;
+let nombre_algoritmo;
 
 [...bxsAlgoritmos].forEach(algoritmo => {
    algoritmo.addEventListener('click', (e) => { 
@@ -38,12 +40,12 @@ let textoAlgoritmo;
       })
 
       e.target.classList.toggle('active') 
-      textoAlgoritmo = e.target.textContent;
+      nombre_algoritmo = e.target.textContent;
    });
 });
 
 document.querySelector('.btnCorrer').addEventListener('click', () => {
-   const seleccionado = textoAlgoritmo;
+   const seleccionado = nombre_algoritmo;
 
    if (!seleccionado) { modal.mostrar(); return; }
 
@@ -51,7 +53,9 @@ document.querySelector('.btnCorrer').addEventListener('click', () => {
 
    table.limpiar();
    table.renderResultado(resultado);
-   results.mostrarPromedio(resultado);
+   let promedio_resultado = promedio.mostrarPromedio(resultado);
+
+   ranking.actualizarTabla(nombre_algoritmo, promedio_resultado);
 
    grafico.limpiar();
    grafico.mostrarGrafico(resultado);

@@ -34,6 +34,7 @@ export class FCFSAlgoritmo extends Algoritmo {
          }
       }
 
+      
       return resultado;
    }
 }

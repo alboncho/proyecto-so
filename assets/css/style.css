@@ -67,16 +67,11 @@ body {
 }
 
 .bxMenuDesplegable .contenidoMenu {
-   max-height: 0;
-   overflow: hidden;
-   opacity: 0;
-   transition: max-height 300ms ease, opacity 100ms ease;
+   
 }
 
 .bxMenuDesplegable .contenidoMenu.active {
-   max-height: 400px;
-   opacity: 1;
-   transition: max-height 100ms ease, opacity 400ms ease-out;
+   display: inline-block;
 }
 
 .bxMenuDesplegable .contenidoMenu ul {
@@ -192,6 +187,7 @@ body {
    display: flex;
    gap: 10px;
    align-items: center;
+   width: max-content;
 }
 
 .bxControles .bxBtn button {
@@ -284,6 +280,44 @@ body {
    .bxPromedios .promedioT, .bxPromedios .promedioE, .bxPromedios .promedioI {
       color: #ff248a;
       } */
+
+.bxRanking {
+   width: max-content;
+   border: 1px solid #c4c4c4;
+}
+
+.bxRanking h5 {
+   color: #333;
+   background-color: #c4c4c4;
+   text-align: center;
+}
+
+.bxRanking .tablaRanking {
+   border-collapse: collapse;
+}
+
+.bxRanking .tablaRanking tr:first-child {
+   border-bottom: 1px solid #c4c4c4;
+}
+
+.bxRanking .tablaRanking tr > * {
+   color: #c4c4c4;
+   padding: 0 7px;
+   text-align: center;
+   border-right: 1px solid #c4c4c4;
+}
+
+.bxRanking .tablaRanking tr td.nroRanking {
+   color: #3CE995;
+   padding: 2px 5px;
+   font-weight: bold;
+   text-shadow: 0 0 7px #3ce995;
+}
+
+.bxRanking .tablaRanking tr td.nombreRanking {
+   color: #fff;
+   text-shadow: 0 0 5px #fff;
+}
       
 .bxProcesos {
    position: relative;
@@ -293,7 +327,7 @@ body {
    flex-wrap: wrap;
    justify-content: space-between;
    gap: 0px;
-   overflow-x: hidden;
+   overflow: auto;
    /* background-color: #38374e; */
    /* background-color: orange; */
 

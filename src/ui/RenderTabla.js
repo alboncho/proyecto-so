@@ -12,23 +12,23 @@ export class RenderTabla {
       let tablaNumero = tablaUno;
 
       this.tablas.forEach(function(tabla) {
-      for (let i=index; i<(index+tablaNumero); i++) {
-         let tr = document.createElement('tr');
-         let datos_proceso = copia.shift();
-         for (let j=0; j<8; j++) {
-            let td = document.createElement('td');
-            if (j == 0) {
-               td.textContent = (i+1);
-            } else {
-               td.textContent = datos_proceso.split(' ')[j-1];
+         for (let i=index; i<(index+tablaNumero); i++) {
+            let tr = document.createElement('tr');
+            let datos_proceso = copia.shift();
+            for (let j=0; j<8; j++) {
+               let td = document.createElement('td');
+               if (j == 0) {
+                  td.textContent = (i+1);
+               } else {
+                  td.textContent = datos_proceso.split(' ')[j-1];
+               }
+               tr.appendChild(td);
             }
-            tr.appendChild(td);
+            tabla.appendChild(tr);
          }
-         tabla.appendChild(tr);
-      }
-      index = tablaUno;
-      tablaNumero = tabalDos;
-   });
+         index = tablaUno;
+         tablaNumero = tabalDos;
+      });
    }
 
    renderResultado(resultado) {
@@ -37,7 +37,7 @@ export class RenderTabla {
 
       this.tablas.forEach((tabla) => {
          let filas = tabla.children;
-         
+
          [...filas].forEach((fila) => {
             if (fila.children.length > 1) {
                index++;

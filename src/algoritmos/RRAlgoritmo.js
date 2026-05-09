@@ -100,7 +100,6 @@ export class RRAlgoritmo extends Algoritmo {
          }
       }
 
-      console.log("resultado ", resultado);
       return resultado;
    }
 
