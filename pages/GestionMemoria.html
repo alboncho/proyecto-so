@@ -9,10 +9,22 @@
 <body>
 
    <nav class="menu">
-      <ul>
-         <li><a href="../index.html" style="--clr: #343047" class="">Alg. de Planificacion</a></li>
-         <li><a href="./GestionMemoria.html" style="--clr: #3e3f97" class="active">Gestion de Memoria</a></li>
-         <li><a href="#" style="--clr: #17c0eb" class="">Recuperacion de datos</a></li>
+      <div class="bxMenuDesplegable ocultar">
+         <div class="iconoMenu" onclick="mostrarMenu()">
+            <img src="../assets/img/icono-menu.png" alt="">
+         </div>
+         <div class="contenidoMenu ocultar">
+            <ul>
+               <li><a href="../index.html" style="--clr: #343047">Alg. de Planificacion</a></li>
+               <li><a href="./GestionMemoria.html" style="--clr: #ff4d4d">Gestion de Memoria</a></li>
+               <li><a href="#" style="--clr: #17c0eb">Recuperacion de datos</a></li>      
+            </ul>
+         </div>
+      </div>
+      <ul class="bxMenu">
+         <li><a href="./index.html" style="--clr: #343047" class="active">Alg. de Planificacion</a></li>
+         <li><a href="./pages/GestionMemoria.html" style="--clr: #ff4d4d">Gestion de Memoria</a></li>
+         <li><a href="#" style="--clr: #17c0eb">Recuperacion de datos</a></li>
       </ul>
    </nav>
 
@@ -22,10 +34,16 @@
       <div class="bxRam">
          <div class="imgRam"></div>
          <div class="bxDatos">
-            <h3 class="subtitulo">Intruzca datos</h3>
+            <h3 class="subtitulo ">Intruzca datos</h3>
          </div>
       </div>
    </section>
+
+   <script>
+      function mostrarMenu() {
+         let menu = document.querySelector('.contenidoMenu').classList.toggle('active');      
+      }
+   </script>
 
 </body>
 </html>
