@@ -24,7 +24,6 @@ export class RenderPromedio {
       this.ctnE.textContent = sumE;
       this.ctnI.textContent = sumI;
 
-      console.log({ nombre, T: sumT, E: sumE, I: sumI })
       return { nombre, T: sumT, E: sumE, I: sumI };
    }
 }

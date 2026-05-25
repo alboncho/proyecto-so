@@ -59,7 +59,6 @@ document.querySelector('.btnCorrer').addEventListener('click', () => {
 
    ranking.actualizarTabla(promedio_resultado);
 
-   grafico.limpiar();
    grafico.mostrarGrafico(resultado);
 });
 

@@ -105,7 +105,7 @@ body {
 }
 
 .menu .bxMenu a.active {
-   background-color: var(--clr);
+   background: linear-gradient(to right, var(--clr-primario) 100%, var(--clr-secundario) 0%);
    color: #fff;   
 }
 
@@ -117,7 +117,7 @@ body {
    width: 20px;
    height: 20px;
    border-bottom-right-radius: 20px;
-   box-shadow: 5px 5px 0 5px var(--clr);
+   box-shadow: 5px 5px 0 5px var(--clr-primario);
 }
 
 .menu .bxMenu a.active::after {
@@ -128,7 +128,7 @@ body {
    width: 20px;
    height: 20px;
    border-bottom-left-radius: 20px;
-   box-shadow: -5px 5px 0 5px var(--clr);
+   box-shadow: -5px 5px 0 5px var(--clr-primario);
 }
 
 .titulo {

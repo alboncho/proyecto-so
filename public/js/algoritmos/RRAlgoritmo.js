@@ -39,7 +39,7 @@ export class RRAlgoritmo extends Algoritmo {
                let rafaga = this.traerRafaga(proceso.id, datos);
 
                proceso.t = rafaga;
-               proceso.inicio = [...(proceso.inicio || []), tiempo];
+               proceso.inicio = this.agregarInicio(proceso.inicio, tiempo, quantum);
 
                tiempo += proceso.t;
 
@@ -89,12 +89,12 @@ export class RRAlgoritmo extends Algoritmo {
 
    agregarInicio(array, tiempo, quantum) {
       if (array != undefined) {
-         for (let i=0; i<(tiempo + quantum); i++) {
+         for (let i=tiempo; i<(tiempo + quantum); i++) {
             array.push(i);
          }
       } else {
          array = []
-         for (let i=0; i<(tiempo + quantum); i++) {
+         for (let i=tiempo; i<(tiempo + quantum); i++) {
             array.push(i);
          }
       }

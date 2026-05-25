@@ -4,23 +4,30 @@ export class RenderGrafico {
    }
 
    mostrarGrafico(resultado) {
-      let columnas = parseInt(resultado[resultado.length-1].fin);
+      this.limpiar();
+
+      let columnas = parseInt(resultado[resultado.length-1].tf);
       let matriz = [];
 
-      let copia_resultado = [...resultado].reverse();
+      let copia = resultado.map(r => ({ ...r }));
 
-      for (let i=resultado.length; i>0; i--) {
+      for (let i=resultado.length-1; i>=0; i--) {
+         let item = this.traerContenido(copia, i);
          let filas = [];
-         let item = this.traerContenido(copia_resultado, i);
+
+         if (item.id === 4) {
+            console.log("item: ", item.inicio, "\nfin: ", item.tf);
+         }
+
          for (let j=0; j<columnas; j++) {
             if (this.isRango(item, j)) {
-               if (this.isFinal(item, j)) {
+               if (this.esFinal(item, j)) {
                   filas.push("x");
                } else {
                   filas.push("#");
                }
             } else {
-               filas.push(0);
+               filas.push('0');
             }
          }
          matriz.push(filas);
@@ -29,7 +36,7 @@ export class RenderGrafico {
       this.elemento.style.gridTemplateColumns = `repeat(${columnas}, 11px)`;
       this.elemento.style.gridTemplateRows = `repeat(${resultado.length}, 11px)`
 
-      let contador_id = resultado.length;
+      let contador_id = resultado.length-1;
 
       matriz.forEach(fila => {
          fila.forEach(columna => {
@@ -37,14 +44,20 @@ export class RenderGrafico {
             div.setAttribute('data-id', contador_id);
             div.classList.add('celda');
             
-            div.addEventListener('click', (e) => {this.mostrarInfo(e, copia_resultado)});
+            div.addEventListener('click', (e) => {this.mostrarInfo(e, copia)});
             
-            if (columna === "#") 
-               div.classList.add('bloque');
-            else if (columna === "x") 
-               div.classList.add('final');
-            else 
-               div.classList.add('oculto');
+            switch (columna) {
+               case "#":
+                  div.classList.add('bloque');
+                  break;
+               case "x":
+                  div.classList.add('final');
+                  break;
+               case "0":
+                  div.classList.add('oculto');
+               default: 
+                  break;
+            }
             
             this.elemento.appendChild(div);
          })
@@ -78,8 +91,9 @@ export class RenderGrafico {
       el.scrollTop = el.scrollHeight - el.clientHeight;
    }
 
-   isFinal(item, j) {
-      if (j === parseInt(item.fin-1)) return true;
+   esFinal(item, j) {
+      if (j === (item.tf-1)) 
+         return true;
       return false;
    }
 
@@ -93,34 +107,36 @@ export class RenderGrafico {
       let txtE = document.querySelector('.txtE');
       let txtI = document.querySelector('.txtI');
 
-
-      console.log("id ", e.target.getAttribute('data-id'));
-      txtNroProceso.textContent = this.traerContenido(copia, e.target.getAttribute('data-id')).id;
-      txtInicio.textContent = this.traerContenido(copia, e.target.getAttribute('data-id')).llegada;
-      txtEjecucion.textContent =this.traerContenido(copia, e.target.getAttribute('data-id')).rafaga;
+      txtNroProceso.textContent = this.traerContenido(copia, e.target.getAttribute('data-id')).id + 1;
+      txtInicio.textContent = this.traerContenido(copia, e.target.getAttribute('data-id')).ti;
+      txtEjecucion.textContent =this.traerContenido(copia, e.target.getAttribute('data-id')).t;
       txtPrioridad.textContent = this.traerContenido(copia, e.target.getAttribute('data-id')).prioridad;
-      txtFinal.textContent = this.traerContenido(copia, e.target.getAttribute('data-id')).fin;
+      txtFinal.textContent = this.traerContenido(copia, e.target.getAttribute('data-id')).tf;
       txtT.textContent = this.traerContenido(copia, e.target.getAttribute('data-id')).T;
       txtE.textContent = this.traerContenido(copia, e.target.getAttribute('data-id')).E;
       txtI.textContent = this.traerContenido(copia, e.target.getAttribute('data-id')).I;
    }
 
    isRango(item, j) {
-      if (typeof item.inicio === "string") {
-         let array = item.inicio.split(',');
+      if (typeof item.inicio === "object") {
+         let array = item.inicio;
+
          for (let i=0; i<array.length; i++) {
-            if (parseInt(array[i]) == j && j < item.fin) return true;
+            if (array[i] === j && j < item.tf) 
+               return true;
          }
+
          return false;
       } else {
-         if (j >= parseInt(item.inicio) && j < (item.fin)) return true;
+         if (j >= item.inicio && j < (item.tf)) 
+            return true;
          return false;
       }
    }
 
    traerContenido(copia, index) {
       for (let i=0; i<copia.length; i++) {
-         if (copia[i].id == index) {
+         if (copia[i].id === parseInt(index)) {
             return copia[i];
          }
       }
