@@ -6,20 +6,19 @@ export class RenderPromedio {
    }
 
    mostrarPromedio(resultado) {
-      let copia_resultado = [...resultado];
       let sumT = 0;
       let sumE = 0;
       let sumI = 0;
 
       resultado.forEach(resultado => {
-         sumT += parseInt(resultado.T);
-         sumE += parseInt(resultado.E);
-         sumI += parseInt(resultado.I);
+         sumT += resultado.T;
+         sumE += resultado.E;
+         sumI += resultado.I;
       });
 
-      sumT = (sumT / copia_resultado.length).toFixed(3);
-      sumE = (sumE / copia_resultado.length).toFixed(3);
-      sumI = (sumI / copia_resultado.length).toFixed(3);
+      sumT = (sumT / resultado.length).toFixed(3);
+      sumE = (sumE / resultado.length).toFixed(3);
+      sumI = (sumI / resultado.length).toFixed(3);
 
       this.ctnT.textContent = sumT;
       this.ctnE.textContent = sumE;

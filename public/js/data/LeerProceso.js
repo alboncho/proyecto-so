@@ -19,6 +19,18 @@ export class LeerProceso {
 
       if (acumulador) lineas.push(acumulador);
 
-      return lineas;
+      return this.parsearProcesos(lineas);
+
+   }
+
+   parsearProcesos(lineas) {
+      return lineas.map((p, index) => (
+         { 
+            id: index, 
+            ti: parseInt(p.split(' ')[0]), 
+            t: parseInt(p.split(' ')[1]), 
+            prioridad: parseInt(p.split(' ')[2])
+         }
+      ));
    }
 }

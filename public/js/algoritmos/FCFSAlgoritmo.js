@@ -4,37 +4,37 @@ export class FCFSAlgoritmo extends Algoritmo {
    calcular(datos) {
       const copia = [...datos];
       const resultado = [];
+
       let tiempo = 0;
       let proceso = copia.shift();
 
-      let id = 0;
-
       while (true) {
-         if (parseInt(proceso.split(' ')[0]) <= tiempo) {
-            id++;
+         if (proceso.ti <= tiempo) {
             let inicio = tiempo;
-            let llegada = parseInt(proceso.split(' ')[0]);
-            let prioridad = parseInt(proceso.split(' ')[2]);
-            let rafaga = parseInt(proceso.split(' ')[1]);
-            tiempo += parseInt(proceso.split(' ')[1]);
 
-            const T = tiempo - parseInt(proceso.split(' ')[0]);
-            const E = T - parseInt(proceso.split(' ')[1]);
-            const I = parseFloat(
-               (parseInt(proceso.split(' ')[1]) / T).toFixed(2)
+            tiempo += proceso.t;
+
+            const T = tiempo - proceso.ti;
+            const E = T - proceso.t;
+            const I = parseFloat((proceso.t / T).toFixed(2));
+
+            resultado.push(
+               { 
+                  ...proceso,
+                  tf: tiempo, 
+                  T, 
+                  E, 
+                  I, 
+                  inicio 
+               }
             );
 
-            resultado.push({ fin: tiempo, T, E, I, inicio, llegada, id, prioridad, rafaga });
-
             if (!copia.length) break;
-
             proceso = copia.shift();
-         } else {
+         } else 
             tiempo++;
-         }
       }
 
-      
       return resultado;
    }
 }

@@ -5,7 +5,14 @@ export class ParsearProceso {
    }
 
    _ordenar(datos) {
-      return [...datos].sort((a, b) => parseInt(a.split(' ')[0]) - parseInt(b.split(' ')[0])
+      return this.reordenarId(
+         datos.sort((a, b) => a.ti - b.ti)
       );
+   }
+
+   reordenarId(datos) {
+      return datos.map((d, index) => (
+         { id: index, ti: d.ti, t: d.t, prioridad: d.prioridad }
+      ));
    }
 }

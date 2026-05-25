@@ -50,9 +50,8 @@ document.querySelector('.btnCorrer').addEventListener('click', () => {
    if (!seleccionado) { modal.mostrar(); return; }
 
    const resultado = algoritmos[seleccionado].calcular(datos);
-
-   table.limpiar();
    table.renderResultado(resultado);
+
    let promedio_resultado = promedio.mostrarPromedio(resultado);
 
    ranking.actualizarTabla(nombre_algoritmo, promedio_resultado);
