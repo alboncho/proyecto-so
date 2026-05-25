@@ -37,6 +37,7 @@ body {
    background: linear-gradient(135deg, var(--clr-primario) 0%, var(--clr-secundario) 100%);
    display: flex;
    flex-direction: column;
+   align-items: center;
    min-height: 100vh;
 }
 
