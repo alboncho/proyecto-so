@@ -26,9 +26,11 @@ const algoritmos = {
    Prioridad: new PrioridadAlgoritmo()
 };
 
+// DATOS
 const datos = parser.parse(await reader.read());
 table.renderProcesos(datos);
 
+// RECUPERAR NOMBRE DEL ALGORITMO
 let bxsAlgoritmos = document.querySelectorAll('.algoritmo');
 let nombre_algoritmo;
 
@@ -44,6 +46,7 @@ let nombre_algoritmo;
    });
 });
 
+// CALCULAR ALGORITMO
 document.querySelector('.btnCorrer').addEventListener('click', () => {
    const seleccionado = nombre_algoritmo;
 
@@ -52,23 +55,20 @@ document.querySelector('.btnCorrer').addEventListener('click', () => {
    const resultado = algoritmos[seleccionado].calcular(datos);
    table.renderResultado(resultado);
 
-   let promedio_resultado = promedio.mostrarPromedio(resultado);
+   let promedio_resultado = promedio.mostrarPromedio(resultado, nombre_algoritmo);
 
-   ranking.actualizarTabla(nombre_algoritmo, promedio_resultado);
+   ranking.actualizarTabla(promedio_resultado);
 
    grafico.limpiar();
    grafico.mostrarGrafico(resultado);
 });
 
+// LIMPIAR TABLA
 document.querySelector('.btnLimpiar').addEventListener('click', () => {
    table.limpiar();
 });
 
-document.querySelector('.spriteDownload').addEventListener('click', (e) => {
-   e.target.style.backgroundPosition = `0 0`;
-   e.target.classList.add('activeSprite');
-})
-
+// MENU 
 document.querySelector('.iconoMenu').addEventListener('click', () => {
    document.querySelector('.contenidoMenu').classList.toggle('active');
 });

@@ -2,66 +2,60 @@ import { Algoritmo } from "./Algoritmo.js";
 
 export class SJNAlgoritmo extends Algoritmo {
    calcular(datos) {
-      let datos_copia = [...datos];
+      let copia = datos.map(d => ({ ...d }));
       let datos_ordenados = [];
 
-      let _id = 0;
-
-      while (true) {
-         let proceso_ant = datos_copia.shift();
-
-         _id++;
-         proceso_ant += " " + _id.toString();
-
+      // ORDENANDO DATOS SEGUN TIEMPO DE EJECUCION
+      while (copia.length != 0) {
+         let proceso_ant = copia.shift();
          let tmp = [];
          tmp.push(proceso_ant);
 
-         while (true) {
-            if (datos_copia.length == 0) break;
+         while (copia.length != 0) {
+            let proceso_act = copia.shift();
 
-            let item = datos_copia.shift();
-
-            if (item.split(' ')[0] === proceso_ant.split(' ')[0]) {
-               _id++;
-               item += " " + _id.toString();
-               tmp.push(item);
+            if (proceso_act.ti === proceso_ant.ti) {
+               tmp.push(proceso_act);
             } else {
-               datos_copia.unshift(item);
+               copia.unshift(proceso_act);
                break;
             }
          }
 
          this.ordenarPorTiempoEjecucion(tmp);
-         datos_ordenados.push(...tmp);
-
-         if (datos_copia.length === 0) break;
+         datos_ordenados = [...datos_ordenados, ...tmp];
       }
 
+      // EMPEZANDO A CALCULAR
       let resultado = [];
       let tiempo = 0;
-      // let sumT = 0, sumE = 0, sumI = 0;
 
       let proceso = datos_ordenados.shift();
 
       while (true) {
-         if (parseInt(proceso.split(' ')[0]) <= tiempo) {
-            let id = parseInt(proceso.split(' ')[3]);
-            let prioridad = parseInt(proceso.split(' ')[2]);
-            let rafaga = parseInt(proceso.split(' ')[1]);
+         if (proceso.ti <= tiempo) {
             let inicio = tiempo;
-            let llegada = parseInt(proceso.split(' ')[0]);
-            tiempo += parseInt(proceso.split(' ')[1]);
+            tiempo += proceso.t;
 
-            let T = tiempo - parseInt(proceso.split(' ')[0]);
-            let E = T - parseInt(proceso.split(' ')[1]);
-            let I = parseFloat((parseInt(proceso.split(' ')[1]) / T).toFixed(2));
+            let T = tiempo - proceso.ti;
+            let E = T - proceso.t;
+            let I = parseFloat((proceso.t / T).toFixed(2));
 
-            resultado.push({ fin: tiempo, T, E, I, inicio, llegada, id, prioridad, rafaga });
+            resultado.push(
+               { 
+                  ...proceso,
+                  tf: tiempo, 
+                  T, 
+                  E, 
+                  I, 
+                  inicio 
+               }
+            );
 
             if (datos_ordenados.length == 0) break;
-
             proceso = datos_ordenados.shift();
-         } else tiempo++;
+         } else 
+            tiempo++;
       }
 
       return resultado;
@@ -70,7 +64,7 @@ export class SJNAlgoritmo extends Algoritmo {
    ordenarPorTiempoEjecucion(tmp) {
       for (let i=0; i<tmp.length-1; i++) {
          for (let j=i+1; j<tmp.length; j++) {
-            if (parseInt(tmp[i].split(' ')[1]) > parseInt(tmp[j].split(' ')[1])) {
+            if (tmp[i].t > tmp[j].t) {
                let aux = tmp[i];
                tmp[i] = tmp[j];
                tmp[j] = aux;

@@ -12,12 +12,10 @@ export class RRAlgoritmo extends Algoritmo {
       
       quantum = Math.round(quantum);
 
-
-      // EMPEZAR A CALCULAR
+      // CALCULAR 
       let resultado = [];
-      datos = datos.map((dato, index) => {return dato += " "  + (index + 1).toString()});
+      let copia = datos.map(d => ({ ...d }));
 
-      let copia = [...datos];
       let tiempo = 0;
       let cola = [];
 
@@ -26,78 +24,43 @@ export class RRAlgoritmo extends Algoritmo {
 
          this.actualizarCola(cola, copia, tiempo);
 
-         if (cola.length != 0) {
-            while (true) {
-               let proceso = cola.shift();
+         while (cola.length != 0) {
+            let proceso = cola.shift();
+            
+            if (proceso.t > quantum) {
+               proceso.t -= quantum;
+               proceso.inicio = this.agregarInicio(proceso.inicio, tiempo, quantum);
 
-               
-               if (parseInt(proceso.split(' ')[1]) > quantum) {
-                  let nueva_rafaga = parseInt(proceso.split(' ')[1]) - quantum;
-                  
-                  let array_proceso = proceso.split(' ');
-                  array_proceso[1] = nueva_rafaga;
-                  proceso = array_proceso.join(' ');
-                  
-                  if (proceso.split(' ').length < 5) {
-                     for (let i=tiempo; i<(tiempo + quantum); i++) {
-                        if (i == tiempo) {
-                           proceso += " " + i;
-                        } else {
-                           proceso += "," + i;
-                        }
-                     }
-                  } else {
-                     for (let i=tiempo; i<(tiempo + quantum); i++) {
-                        proceso += "," + i;
-                     }
+               tiempo += quantum;
+
+               this.actualizarCola(cola, copia, tiempo);
+               cola.push(proceso);
+            } else {
+               let rafaga = this.traerRafaga(proceso.id, datos);
+
+               proceso.t = rafaga;
+               proceso.inicio = [...(proceso.inicio || []), tiempo];
+
+               tiempo += proceso.t;
+
+               const T = tiempo - proceso.ti;
+               const E = T - rafaga;
+               const I = parseFloat((rafaga / T).toFixed(3));
+
+               resultado.push(
+                  { 
+                     ...proceso,
+                     tf: tiempo, 
+                     T, 
+                     E, 
+                     I
                   }
+               );
 
-                  tiempo += quantum;
-
-                  this.actualizarCola(cola, copia, tiempo);
-
-                  cola.push(proceso);
-               } else {
-                  let array_proceso = proceso.split(' ');
-                  let id = parseInt(proceso.split(' ')[3]);
-                  let aux_rafaga = parseInt(proceso.split(' ')[1]);
-                  array_proceso[1] = 0;
-                  proceso = array_proceso.join(' ');
-
-                  let rafaga = this.traerRafaga(id, datos);
-                  let prioridad = parseInt(proceso.split(' ')[2]);
-
-                  if (proceso.split(' ').length < 5) {
-                     for (let i=tiempo; i<(tiempo + aux_rafaga); i++) {
-                        if (i == tiempo) {
-                           proceso += " " + i;
-                        } else {
-                           proceso += "," + i;
-                        }
-                     }
-                  } else {
-                     for (let i=tiempo; i<(tiempo +  aux_rafaga); i++) {
-                        proceso += "," + i;
-                     }
-                  }
-
-                  tiempo += aux_rafaga;
-
-                  let inicio = proceso.split(' ')[4];
-                  let llegada = parseInt(array_proceso[0]);
-                  const T = tiempo - parseInt(array_proceso[0]);
-                  const E = T - this.traerRafaga(id, datos);
-                  const I = (this.traerRafaga(id, datos) / T).toFixed(3);
-
-                  resultado.push({ fin: tiempo, T, E, I, inicio, llegada, id, rafaga, prioridad });
-                  this.actualizarCola(cola, copia, tiempo);
-               }
-
-               if (cola.length == 0) break;
+               this.actualizarCola(cola, copia, tiempo);
             }
-         } else {
-            tiempo++;
          }
+         tiempo++;
       }
 
       return resultado;
@@ -105,8 +68,8 @@ export class RRAlgoritmo extends Algoritmo {
 
    traerRafaga(id, datos) {
       for (let i=0; i<datos.length; i++) {
-         if (parseInt(datos[i].split(' ')[3]) == id) {
-            return parseInt(datos[i].split(' ')[1]);
+         if (datos[i].id == id) {
+            return parseInt(datos[i].t);
          }
       }
    }
@@ -115,12 +78,27 @@ export class RRAlgoritmo extends Algoritmo {
       while (copia.length != 0) {
          let item = copia.shift();
 
-         if (parseInt(item.split(' ')[0]) <= tiempo) {
+         if (item.ti <= tiempo) {
             cola.push(item);
          } else {
             copia.unshift(item);
             break;
          }
       }
+   }
+
+   agregarInicio(array, tiempo, quantum) {
+      if (array != undefined) {
+         for (let i=0; i<(tiempo + quantum); i++) {
+            array.push(i);
+         }
+      } else {
+         array = []
+         for (let i=0; i<(tiempo + quantum); i++) {
+            array.push(i);
+         }
+      }
+
+      return array;
    }
 }

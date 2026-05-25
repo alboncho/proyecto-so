@@ -5,15 +5,14 @@ export class RenderRanking {
       this.tabla = tabla;
    }
 
-   actualizarTabla(nombre, datos) {
+   actualizarTabla(datos) {
       let flag = true;
       
       for (let e of this.array_promedios) {
-         if (e.nombre === nombre) flag = false
+         if (e.nombre === datos.nombre) flag = false
       }
 
       if (flag) {
-         datos.nombre = nombre;
          this.array_promedios.push(datos);
          this.ordenarDatos(this.array_promedios);
          this.agregarNroPosicion(this.array_promedios);
@@ -59,13 +58,10 @@ export class RenderRanking {
    }
 
    limpiarTabla() {
-      let flag = 0;
-
       [...this.tabla.tBodies[0].children].forEach(tr => {
          if (!isNaN(parseInt(tr.children[0].textContent))) 
             tr.remove();
       });
-
    }
 
 }

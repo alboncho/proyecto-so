@@ -2,7 +2,7 @@ import { Algoritmo } from './Algoritmo.js';
 
 export class FCFSAlgoritmo extends Algoritmo {
    calcular(datos) {
-      const copia = [...datos];
+      const copia = datos.map(d => ({ ...d }));
       const resultado = [];
 
       let tiempo = 0;
@@ -16,7 +16,7 @@ export class FCFSAlgoritmo extends Algoritmo {
 
             const T = tiempo - proceso.ti;
             const E = T - proceso.t;
-            const I = parseFloat((proceso.t / T).toFixed(2));
+            const I = parseFloat((proceso.t / T).toFixed(3));
 
             resultado.push(
                { 

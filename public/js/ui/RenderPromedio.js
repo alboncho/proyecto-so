@@ -5,25 +5,26 @@ export class RenderPromedio {
       this.ctnI = document.querySelector(`.resultadoI`);
    }
 
-   mostrarPromedio(resultado) {
+   mostrarPromedio(resultado, nombre) {
       let sumT = 0;
       let sumE = 0;
       let sumI = 0;
 
-      resultado.forEach(resultado => {
-         sumT += resultado.T;
-         sumE += resultado.E;
-         sumI += resultado.I;
+      resultado.forEach(r => {
+         sumT += r.T;
+         sumE += r.E;
+         sumI += r.I;
       });
 
-      sumT = (sumT / resultado.length).toFixed(3);
-      sumE = (sumE / resultado.length).toFixed(3);
-      sumI = (sumI / resultado.length).toFixed(3);
+      sumT = parseFloat((sumT / resultado.length).toFixed(3));
+      sumE = parseFloat((sumE / resultado.length).toFixed(3));
+      sumI = parseFloat((sumI / resultado.length).toFixed(3));
 
       this.ctnT.textContent = sumT;
       this.ctnE.textContent = sumE;
       this.ctnI.textContent = sumI;
 
-      return { T: sumT, E: sumE, I: sumI };
+      console.log({ nombre, T: sumT, E: sumE, I: sumI })
+      return { nombre, T: sumT, E: sumE, I: sumI };
    }
 }

@@ -2,7 +2,7 @@ import { Algoritmo } from "./Algoritmo.js";
 
 export class PrioridadAlgoritmo extends Algoritmo {
    calcular(datos) {
-      let copia = [...datos];
+      let copia = datos.map(d => ({ ...d }));
       let cola = [];
       let resultado = [];
       let tiempo = 0;
@@ -30,7 +30,7 @@ export class PrioridadAlgoritmo extends Algoritmo {
                let rafaga = this.traerRafaga(proceso.id, datos);
                proceso.t = rafaga;
 
-               let T =  tiempo - proceso.ti;
+               let T = tiempo - proceso.ti;
                let E = T - proceso.t;
                let I = parseFloat((proceso.t / T).toFixed(3));
                
@@ -63,7 +63,7 @@ export class PrioridadAlgoritmo extends Algoritmo {
       while (copia.length != 0) {
          let item = copia.shift();
 
-         if (item.t <= tiempo) {
+         if (item.ti <= tiempo) {
             cola.push(item);
          } else {
             copia.unshift(item);
@@ -72,16 +72,6 @@ export class PrioridadAlgoritmo extends Algoritmo {
       }
 
       this.ordenarCola(cola);
-   }
-
-   agregarInicio(proceso, tiempo) {
-      if (proceso.split(' ').length < 5) {
-         proceso += " " + (tiempo);
-      } else {
-         proceso += "," + (tiempo);
-      }
-
-      return proceso;
    }
 
    traerRafaga(id, datos) {
