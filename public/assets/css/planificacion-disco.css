@@ -1,0 +1,226 @@
+@font-face {
+   font-family: 'VT323';
+   src: url("../fuente/VT323-Regular.ttf");
+}
+
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: "VT323", consolas, sans-serif;
+   letter-spacing: 1px;
+}
+
+:root {
+   --clr-primario: #f3f2f2;
+   --clr-secundario: #acacac;
+}
+
+html {
+   font-size: 20px;
+}
+
+body {
+   min-height: 100vh;
+   background: linear-gradient(135deg, var(--clr-primario) 0%, var(--clr-secundario) 100%);
+}
+/* GENERALES */
+.ocultar {
+   display: none;
+}
+
+.visible {
+   display: inline-block;
+}
+
+/* MENU */
+.menu {
+   background-color: #222;
+   width: 100%;
+   height: max-content;
+   padding: 13px 20px;
+}
+
+.bxMenuDesplegable .iconoMenu {
+   cursor: pointer;
+}
+
+.bxMenuDesplegable .contenidoMenu.active {
+   display: inline-block;
+}
+
+.bxMenuDesplegable .contenidoMenu ul {
+   list-style: none;
+}
+
+.bxMenuDesplegable .contenidoMenu ul li a {
+   display: inline-block;
+   text-decoration: none;
+   color: #333;
+   padding: 10px 0;
+}
+
+.bxMenuDesplegable .contenidoMenu ul li:hover {
+   background-color: rgb(255 255 255 / .8);
+}
+
+.bxMenuDesplegable .contenidoMenu ul li:hover a {
+   color: #333;
+}
+
+
+.menu .bxMenu {
+   list-style: none;
+   display: flex;
+   height: max-content;
+}
+
+.menu .bxMenu a {
+   position: relative;
+   color: rgb(255 255 255 / .6);
+   text-decoration: none;
+   padding: 15px 14px;
+   border-top-right-radius: 12px;
+   border-top-left-radius: 12px;
+}
+
+.menu .bxMenu a.active {
+   background: linear-gradient(to right, var(--clr-primario) 100%, var(--clr-secundario) 0%);
+   color: #333;   
+}
+
+.menu .bxMenu a.active::before {
+   content: '';
+   position: absolute;
+   left: -20px;
+   bottom: 0;
+   width: 20px;
+   height: 20px;
+   border-bottom-right-radius: 20px;
+   box-shadow: 5px 5px 0 5px var(--clr-primario);
+}
+
+.menu .bxMenu a.active::after {
+   content: '';
+   position: absolute;
+   left: 100%;
+   bottom: 0;
+   width: 20px;
+   height: 20px;
+   border-bottom-left-radius: 20px;
+   box-shadow: -5px 5px 0 5px var(--clr-primario);
+}
+
+.titulo {
+   font-size: 2rem;
+   color: rgb(255 255 255 / .5);
+   margin: 2rem;
+   text-decoration: underline;
+   text-align: center;
+}
+
+
+/* PRINCIPAL */
+.contenedor {
+   margin: 2rem auto;
+   width: 100%;
+   max-width: 1200px;
+   overflow: hidden;
+   border-radius: 20px;
+}
+
+.bxCard {
+   background-color: #fefefe;
+}
+
+.cardHeader {
+   background-color: #333;
+   height: 3rem;
+   padding: 10px;
+   color: #fff;
+   display: flex;
+}
+
+.cardHeader .punto {
+   width: 40px;
+   height: 40px;
+   margin: 0 20px;
+   display: inline-block;
+   background-color: tomato;
+   border-radius: 50%;
+}
+
+.cardBody {
+   padding: 20px;
+   background-color: #fff;
+}
+
+.cardBody .bxInputs {
+   display: flex;
+   justify-content: space-between;
+   flex-wrap: wrap;
+   gap: 20px;
+}
+
+.bxInputs .inputGrupo > input, select, textarea, button {
+   border: 1px solid #acacac;
+   border-radius: 10px;
+   padding: 5px 10px;
+   outline: none;;
+   font-size: 0.75rem;
+}
+
+.inputGrupo textarea {
+   --size: 120px;
+
+   min-width: var(--size);
+   min-height: var(--size);
+   max-width: var(--size);
+   max-height: var(--size);
+}
+
+.inputGrupo label span.punto {
+   display: inline-block;
+   background-color: var(--clr);
+   width: 10px;
+   height: 10px;
+   border-radius: 50%;
+}
+
+.inputGrupo label {
+   font-size: 0.8rem;
+   margin-bottom: 7px;
+}
+
+.bxInputs .inputGrupo {
+   display: flex;
+   flex-direction: column;
+}
+
+.bxCard .bxBotones {
+   margin: 1rem 0;
+}
+
+.bxBotones .btnCorrer {
+   font-size: 1rem;
+   background-color: #51e68a;
+
+   &:hover {
+      background-color: #43c474;
+   }
+}
+
+.bxBotones .btnLimpiar {
+   font-size: 1rem;
+}
+
+/* MEDIA */
+@media (max-width: 665px) {
+   .menu .bxMenu {
+      display: none;
+   }
+
+   .menu .bxMenuDesplegable {
+      display: inline-block;
+   }
+}

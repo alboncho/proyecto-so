@@ -267,7 +267,7 @@ body {
    width: var(--box-width);
    height: var(--box-height);
    display: block;
-   color: rgb(0 0 0 / .5);
+   color: rgb(255 255 255/ .8);
    text-align: center;
    font-weight: bold;
 }
