@@ -1,5 +1,5 @@
 export class MostrarEficiencia {
-   mostrar(datos) {
+   mostrar(datos, nombre) {
       let nroFallos = datos.nroFallos;
       let nroPaginas = datos.nroPaginas;
 
@@ -12,5 +12,10 @@ export class MostrarEficiencia {
       ctn_nro_pag.textContent = nroPaginas;
       ctn_frecuencia.textContent = nroFallos / nroPaginas;
       ctn_rendimiento.textContent = (1 - parseFloat(ctn_frecuencia.textContent)).toFixed(2);
+
+      let rendimiento = parseFloat(ctn_rendimiento.textContent) * 100;
+      rendimiento = parseFloat(rendimiento.toFixed(2));
+
+      return { rendimiento, nombre };
    }
 }

@@ -235,7 +235,7 @@ body {
    background-color: var(--clr-rojo);
    width: 100%;
    overflow: scroll;
-   margin-bottom: 10px;
+   /* margin-bottom: 10px; */
    white-space: nowrap;
 }
 
@@ -250,7 +250,7 @@ body {
 }
 
 .bxRemplazoPaginas .bxPaginas {
-   margin-bottom: 10px;
+   /* margin-bottom: 10px; */
    width: 100%;
    overflow: scroll;
    background-color: #f1f1f1;
@@ -267,7 +267,7 @@ body {
    width: var(--box-width);
    height: var(--box-height);
    display: block;
-   color: #f1f1f1;
+   color: rgb(0 0 0 / .5);
    text-align: center;
    font-weight: bold;
 }
@@ -291,16 +291,24 @@ body {
    border: 2px solid rgb(0 0 0 / .25);
    padding: 6px;
    line-height: 0.5rem;
-   color: #505050;
+   color: #f1f1f1;
    font-weight: bold;;
 }
 
 .bxFA .FA.fallo {
-   background-color: var(--clr-naranja);
+   background-color: var(--clr-rojo);
 }
 
 .bxFA .FA.ok {
    background-color: var(--btn-hover-end);
+}
+
+/* <-- TABLAS --> */
+.tablas {
+   display: flex;
+   justify-content: space-between;
+   flex-wrap: wrap;;
+   margin-bottom: 2rem;
 }
 
 /* <-- EFICIENCI --> */
@@ -330,13 +338,16 @@ body {
                inset 5px 5px 10px rgb(0 0 0 / .5),
                inset 5px 5px 20px rgb(255 255 255 / .2), 
                inset -5px -5px 15px rgb(0 0 0 / .7);
-   margin-bottom: 25px;
 }
 
 .tablaRanking .itemRanking {
    display: flex;
    width: 100%;
    justify-content: space-between;
+}
+
+.itemRanking .nombreAlgoritmos {
+   text-align: center;
 }
 
 /* MEDIA */

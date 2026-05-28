@@ -6,12 +6,14 @@ import { AlgoritmoRPLRU } from "./algoritmos/AlgoritmoRPLRU.js";
 import { AlgoritmoRPOPT } from "./algoritmos/AlgoritmoRPOPT.js";
 import { LeerPaginas } from "./data/LeerPaginas.js";
 import { MostrarEficiencia } from "./ui/MostrarEficiencia.js";
+import { RankingTP } from "./ui/RankingTP.js";
 
 const cola = new GenerarCola(document.querySelector('.bxCola'));
 const paginas = new GenerarPaginas(document.querySelector('.bxPaginas'));
 const fa = new GenerarFA(document.querySelector('.bxFA'));
 const leer = new LeerPaginas();
 const eficiencia = new MostrarEficiencia();
+const rankingTP = new RankingTP(document.querySelector(".tablaRanking"));
 
 const datos = await leer.leer();
 
@@ -29,7 +31,7 @@ document.querySelector('.btnCorrer').addEventListener('click', () => {
    const input = document.querySelector('.nroMarco');
    const algoritmo_seleccionado = document.querySelector("#algoritmos").value;
 
-   if (isNaN(input.value) && !algoritmo_seleccionado) {
+   if (isNaN(input.value) || !algoritmo_seleccionado) {
       alert('Inserte un valor valido');
       return;
    }
@@ -48,7 +50,9 @@ document.querySelector('.btnCorrer').addEventListener('click', () => {
 
    let eficiencia_datos = fa.mostrarResultado(fallos);
 
-   eficiencia.mostrar(eficiencia_datos);
+   let ranking_datos = eficiencia.mostrar(eficiencia_datos, algoritmo_seleccionado);
+
+   rankingTP.actualizarRanking(ranking_datos);
 });
 
 // <--- SCROLL --->

@@ -5,7 +5,8 @@ export class GenerarPaginas {
    }
    
    crearPaginasVacias(datos) {
-      const colores = ['#e2316c', '#df4e7e'];
+      // const colores = ['#e2316c', '#df4e7e'];
+      const colores = ['#fff', '#f1f1f1'];
    
       for (let i=0; i<datos.length; i++) {
          let div = document.createElement('div');
