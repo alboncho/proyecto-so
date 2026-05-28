@@ -19,13 +19,15 @@
                <li><a href="../../index.html" style="--clr: #343047">Alg. de Planificacion</a></li>
                <li><a href="./GestionMemoria.html" style="--clr: #ff4d4d">Gestion de Memoria</a></li>
                <li><a href="./PlanificacionDisco.html" style="--clr: #17c0eb">Planif. de Disco</a></li>      
+               <li><a href="./Archivos.html" style="--clr: #17c0eb">Archivos</a></li>      
             </ul>
          </div>
       </div>
       <ul class="bxMenu">
          <li><a href="../../index.html" style="--clr: #343047" class=""">Alg. de Planificacion</a></li>
          <li><a href="./GestionMemoria.html" style="--clr: #ff4d4d" class="">Gestion de Memoria</a></li>
-         <li><a href="#" style="--clr: #17c0eb" class="active">Planif. del Disco</a></li>
+         <li><a href="./PlanificacionDisco.html style="--clr: #17c0eb" class="active">Planif. del Disco</a></li>
+         <li><a href="./Archivos.html" style="--clr: #17c0eb">Archivos</a></li>
       </ul>
    </nav>
    
@@ -37,14 +39,15 @@
             <h2>Planificacion del Disco</h4>
          </div>
          <div class="cardBody">
+            <!-- INPUTS -->
             <div class="bxInputs">
                <div class="inputGrupo">
                   <label for=""><span class="punto" style="--clr: #F52798"></span> Cola de peticiones</label>
-                  <textarea name="" id="cola-peticiones">3,3,2,</textarea>
+                  <textarea name="" id="cola-peticiones"></textarea>
                </div>
                <div class="inputGrupo">
                   <label for=""><span class="punto" style="--clr: #F52798"></span> Posicion inicla del cabezal</label>
-                  <input type="number" step="1" value="35">
+                  <input type="number" step="1" value="35" id="posicion-cabezal">
                </div>
                <div class="inputGrupo">
                   <label for=""><span class="punto" style="--clr: #F52798"></span> Algoritmos</label>
@@ -54,16 +57,16 @@
                      <option value="scan">SCAN</option>
                   </select>
                </div>
-               <div class="inputGrupo">
+               <div class="inputGrupo" id="scan-direccion">
                   <label for=""><span class="punto" style="--clr: #F52798"></span> Direccion SCAN</label>
                   <select name="" id="direccion-scan">
-                     <option value="abajo">Hacia cilindros menores(↑)</option>
-                     <option value="arriba">Hacia cilindros mayores(↓)</option>
+                     <option value="arriba">Hacia cilindros mayores(↑)</option>
+                     <option value="abajo">Hacia cilindros menores(↓)</option>
                   </select>
                </div>
                <div class="inputGrupo">
                   <label for=""><span class="punto" style="--clr: #F52798"></span> Cilindro maximo (SCAN)</label>
-                  <input type="number" step="1" value="200">
+                  <input type="number" step="1" value="200" id="cilindro-maximo">
                </div>
             </div>
 
@@ -77,6 +80,19 @@
                   Limpiar
                </button>
             </div>
+
+            <!-- RESULTADO -->
+             <div class="bxResultado">
+               <div class="bxOrdenAtencion">
+                  <p>Orden de atencion:</p>
+                  <div class="ordenAtencion">
+                  </div>
+               </div>
+               <div class="bxSeek">
+                  <span style="font-weight: bold; text-decoration: underline; letter-spacing: 0px;">Distancia total recorrida (seek total): </span>
+                  <span class="xSeek">460 cilindros</span>
+               </div>
+             </div>
          </div>
       </div>
    </div>

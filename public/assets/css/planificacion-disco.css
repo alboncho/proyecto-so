@@ -24,6 +24,7 @@ body {
    min-height: 100vh;
    background: linear-gradient(135deg, var(--clr-primario) 0%, var(--clr-secundario) 100%);
 }
+
 /* GENERALES */
 .ocultar {
    display: none;
@@ -213,6 +214,45 @@ body {
 .bxBotones .btnLimpiar {
    font-size: 1rem;
 }
+
+/* -- RESULTADO -- */
+.bxResultado {
+   color: rgb(0 0 0 / .8);
+   border-radius: 20px;
+   background-color: rgb(205, 205, 205);
+   border: 1px solid gray;
+   padding: 10px 20px;
+}
+
+.bxOrdenAtencion p {
+   font-weight: bold;
+   text-decoration: underline;
+   margin: 10px 0;
+}
+
+.ordenAtencion {
+   display: flex;
+   overflow: scroll;
+   gap: 5px;
+   margin-bottom: 5px;
+   padding: 5px 0 20px 0;
+}
+
+.ordenAtencion .itemOrden {
+   --size: 30px;
+
+   background-color: rgb(234, 177, 98);
+   border: 1px solid rgb(0 0 0 / .5);
+   border-radius: 10px;
+   width: var(--size);
+   height: var(--size);
+   display: grid;
+   place-items: center;
+   flex-shrink: 0;
+   font-size: 0.9rem;
+   font-weight: bold;
+}
+
 
 /* MEDIA */
 @media (max-width: 665px) {
