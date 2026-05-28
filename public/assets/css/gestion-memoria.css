@@ -22,6 +22,9 @@
    /* Text Colors */
    --text-color: white;
    --label-opacity: 0.9;
+
+   --clr-rojo: #e2316c;
+   --clr-naranja: #e9c838;
 }
 
 * {
@@ -31,6 +34,10 @@
    font-family: 'VT323', roboto, consolas;
    letter-spacing: 1px;
    font-size: 20px;
+}
+
+html {
+   font-size: 24px;
 }
 
 body {
@@ -140,10 +147,11 @@ body {
    text-align: center;
 }
 
-/* CONTENEDOR */
+/* PRINCIPAL */
 .contenedor {
    display: flex;
    flex-direction: column;
+   width: 100%;
    max-width: 1000px;
    padding: 2rem;
 }
@@ -162,7 +170,7 @@ body {
 }
 
 .bxRam .bxDatos {
-   background-color: #e2316c;
+   background-color: var(--clr-rojo);
    width: 200px;
    height: 200px;
    border-radius: 10px;
@@ -180,6 +188,158 @@ body {
    padding: 10px;
 }
 
+/* ALGORITMO DE REMPLAZO DE PAGINAS */
+.bxRemplazoPaginas {
+   --box-width: 30px;
+   --box-height: 30px;
+
+   width: 100%;
+}
+
+.bxRemplazoPaginas .bxInput {
+   margin-bottom: 20px;
+}
+
+.bxRemplazoPaginas .nroMarco {
+   outline: none;
+   border: none;
+   background-color: var(--clr-primario);
+   padding: 5px 3px;
+   color: #ffF;
+   width: 70px;
+
+}
+
+.bxInput .btnCorrer {
+   --btn-start: #e99e3c;
+   --btn-end: #be802e;
+   --btn-hover-start: #f3b96d;
+   --btn-hover-end: #b6823d;
+   --btn-shadow: #996f38;
+   
+   background: linear-gradient(180deg, var(--btn-start) 9%, var(--btn-end) 100%);
+   box-shadow: 0 8px 0 var(--btn-shadow);
+   border-radius: 10px;
+   outline: none;
+   border: none;
+   padding: 5px 8px;
+   cursor: pointer;
+}
+
+.bxInput .btnCorrer:active {
+   transform: translateY(6px);
+   box-shadow: 0 3px 0 var(--btn-shadow);
+}
+
+.bxRemplazoPaginas .bxCola {
+   background-color: var(--clr-rojo);
+   width: 100%;
+   overflow: scroll;
+   margin-bottom: 10px;
+   white-space: nowrap;
+}
+
+.bxCola .nroPagina {
+   width: var(--box-width);
+   height: var(--box-height);
+   text-align: center;
+   color: #fff;
+   border: 2px solid rgb(0 0 0 / .1);
+   font-weight: bold;
+   display: inline-block;
+}
+
+.bxRemplazoPaginas .bxPaginas {
+   margin-bottom: 10px;
+   width: 100%;
+   overflow: scroll;
+   background-color: #f1f1f1;
+   display: flex;
+}
+
+.bxPaginas .bxPagina {
+   display: inline-block;
+   width: var(--box-height);
+   border: 2px solid rgb(0 0 0 / .01);
+}
+
+.bxPaginas .bxPagina .item {
+   width: var(--box-width);
+   height: var(--box-height);
+   display: block;
+   color: #f1f1f1;
+   text-align: center;
+   font-weight: bold;
+}
+
+.bxPaginas .bxPagina .item.pintar {
+   background-color: var(--clr-naranja);
+   color: #333;
+}
+
+.bxRemplazoPaginas .bxFA {
+   width: 100%;
+   overflow: scroll;
+   padding: 0 0 10px 0;
+   white-space: nowrap;
+}
+
+.bxFA .FA {
+   width: var(--box-width);
+   height: var(--box-height);
+   display: inline-block;
+   border: 2px solid rgb(0 0 0 / .25);
+   padding: 6px;
+   line-height: 0.5rem;
+   color: #505050;
+   font-weight: bold;;
+}
+
+.bxFA .FA.fallo {
+   background-color: var(--clr-naranja);
+}
+
+.bxFA .FA.ok {
+   background-color: var(--btn-hover-end);
+}
+
+/* <-- EFICIENCI --> */
+.bxEficiencia {
+   color: #cecece;
+   background-color: var(--clr-rojo);
+   width: max-content;
+   border-radius: 15px;
+   padding: 10px;
+   box-shadow: 25px 25px 74px rgb(0 0 0 / .25),
+               10px 10px 70px rgb(0 0 0 / .25),
+               inset 5px 5px 10px rgb(0 0 0 / .5),
+               inset 5px 5px 20px rgb(255 255 255 / 0.2),
+               inset -5px -5px 15px rgb(0 0 0 / .76);
+}
+
+
+/* <-- RANKING --> */
+.bxRanking {
+   background-color: var(--clr-rojo);
+   color: #cecece;
+   width: max-content;
+   border-radius: 10px;
+   padding: 10px;
+   box-shadow: 25px 25px 74px rgb(0 0 0 / .25),
+               10px 10px 70px rgb(0 0 0 / .25),
+               inset 5px 5px 10px rgb(0 0 0 / .5),
+               inset 5px 5px 20px rgb(255 255 255 / .2), 
+               inset -5px -5px 15px rgb(0 0 0 / .7);
+   margin-bottom: 25px;
+}
+
+.tablaRanking .itemRanking {
+   display: flex;
+   width: 100%;
+   justify-content: space-between;
+}
+
+/* MEDIA */
 @media (max-width: 665px) {
    .menu .bxMenu {
       display: none;

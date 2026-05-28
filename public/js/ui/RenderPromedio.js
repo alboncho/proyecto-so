@@ -14,7 +14,7 @@ export class RenderPromedio {
          sumT += r.T;
          sumE += r.E;
          sumI += r.I;
-      });
+      });   
 
       sumT = parseFloat((sumT / resultado.length).toFixed(3));
       sumE = parseFloat((sumE / resultado.length).toFixed(3));

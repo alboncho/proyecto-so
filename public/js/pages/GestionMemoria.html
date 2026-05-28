@@ -8,6 +8,7 @@
 </head>
 <body>
 
+   <!-- MENU -->
    <nav class="menu">
       <div class="bxMenuDesplegable ocultar">
          <div class="iconoMenu" onclick="mostrarMenu()">
@@ -30,6 +31,7 @@
 
    <h1 class="titulo">Gestion de Memoria</h1>
    
+   <!-- ALGORITMO DE REMPLAZO DE PAGINAS -->
    <section class="contenedor">
       <div class="bxRam">
          <div class="imgRam"></div>
@@ -37,6 +39,63 @@
             <h3 class="subtitulo ">Intruzca datos</h3>
          </div>
       </div>
+
+      <h3 class="titulo">Traduccion de pagina</h3>
+
+      <div class="bxRemplazoPaginas">
+         <div class="bxInput">
+            <label for="nroMarco">
+               <span style="color: #fff">Introduzca cantidad de marcos: </span>
+               <input type="text" id="nroMarco" class="nroMarco">
+            </label>
+
+            <span style="color: #fff">Algoritmo</span>
+            <select name="" id="algoritmos">
+               <option value="FCFS">FCFS</option>
+               <option value="LRU">LRU</option>
+               <option value="OPT">OPT</option>
+            </select>
+            <button class="btnCorrer">-></button>
+         </div>
+
+         <div class="bxRanking">
+            <h4>Tabla mejores algoritmos</h4>
+            <hr style="width: 100%; height: 4px; background-color: rgb(255 255 255 / .4); margin-bottom: 5px; border: none;">
+
+            <div class="tablaRanking">
+               <div class="itemRanking">
+                  <div class="nroRanking">#1</div>
+                  <div class="nombreAlgoritmos">FCFS</div>
+                  <div class="txtRendimiento">30%</div>
+               </div>
+            </div>
+         </div>
+
+         <div class="bxCola"></div>
+         <div class="bxPaginas"></div>
+         <div class="bxFA"></div>
+      </div>
+
+      <div class="bxEficiencia" style="width: max-content;">
+         <h4>Eficiencia</h4>
+         <hr style="width: 100%; background: rgb(0 0 0 / .4); height: 5px; border: none; margin: 5px 0;">
+         <div class="bxNroFallos">
+            <span>Nro fallo: </span><span class="nroFallos">12</span>
+         </div>
+         <div class="bxNroPaginas">
+            <span>Nro paginas: </span><span class="nroPag">12</span>
+         </div>
+         <div class="bxFrecuencia">
+            <span>Frecuencia: </span><span class="frecuencia">12</span>
+         </div>
+         <div class="bxRendiemiento">
+            <span>Rendimiento: </span><span class="rendimiento">12</span>
+         </div>
+      </div>
+   </section>
+
+   <section style="height: 500px">
+
    </section>
 
    <script>
@@ -44,6 +103,8 @@
          let menu = document.querySelector('.contenidoMenu').classList.toggle('active');      
       }
    </script>
+
+   <script type="module" src="../memoria.js"></script>
 
 </body>
 </html>
