@@ -36,6 +36,8 @@
    <div class="contenedor">
       <h3 class="subtitulo"><span class="bloquesito"></span> Mapa de Bloques</h3>
 
+      <h3 style="display: flex; align-items: flex-end; gap: 5px;">[OCUPADO <br> <div class="bloque ocupado" style="width: 40px; height: 40px;"></div>] / [LIBRE <div class="bloque libre" style="width: 40px; height: 40px;"></div>]</h3>
+
       <!-- BLOQUES -->
       <div class="bxCardBloques">
          <div class="bloque libre" data-id="1">1</div>
@@ -124,30 +126,51 @@
       <div class="bxCardArchivos">
          <div class="headerArchivos">
             <h3 class="subtitulo"><span class="bloquesito"></span> Archivos Existentes</h3>
-            <button id="btn-crear-archivo">📄 + Nuevo archivo</button>
+
+            <!-- BOTON CREAR/RECUPERAR -->
+             <div class="botonesCR">
+                <button id="btn-crear-archivo">📄 + Nuevo archivo</button>
+                <button id="btn-recuperar-archivo">🔁 Recuperar Archivo</button>
+             </div>
          </div>
 
-         <div class="listaArchivos">
-            <div class="itemArchivo" data-id="1">
-               <div class="itemHeader">
-                  <span id="nombre">📄archivos.txt</span>
-                  <button id="btn-eliminar-archivo">Eliminar</button>
+         <div class="bxArchivos">
+            <!-- LISTA DE ARCHIVOS -->
+            <div class="listaArchivos">
+               <div class="itemArchivo" data-id="1">
+                  <div class="itemHeader">
+                     <span id="nombre">📄archivos.txt</span>
+                     <button id="btn-eliminar-archivo">Eliminar</button>
+                  </div>
+                  <div class="itemBody">
+                     <span>Bloques: </span><span id="bloques-ocupados">[25, 25, 55]</span>
+                  </div>
                </div>
-               <div class="itemBody">
-                  Bluques:<span id="bloques-ocupados">[25, 25, 55]</span>
+   
+               <div class="itemArchivo" data-id="2">
+                  <div class="itemHeader">
+                     <span id="nombre">📄archivos.txt</span>
+                     <button id="btn-eliminar-archivo">Eliminar</button>
+                  </div>
+                  <div class="itemBody">
+                     <span>Bloques: </span><span id="bloques-ocupados">[1, 2, 10]</span>
+                  </div>
                </div>
             </div>
 
-            <div class="itemArchivo" data-id="2">
-               <div class="itemHeader">
-                  <span id="nombre">📄archivos.txt</span>
-                  <button id="btn-eliminar-archivo">Eliminar</button>
-               </div>
-               <div class="itemBody">
-                  Bluques:<span id="bloques-ocupados">[1, 2, 10]</span>
-               </div>
+            <!-- ULTIMO ARCHIVO A RECUPERAR -->
+            <div class="bxHistorial">
+               <h4>Ultimo archivo eliminado:</h4>
+               <hr>
+               <!-- <div class="backup"> -->
+                  <!-- Documento: nombre.txt
+                  <p>bloques: [1.3,4]</p>
+               </div> -->
             </div>
          </div>
+
+
+
       </div>
    </div>
 

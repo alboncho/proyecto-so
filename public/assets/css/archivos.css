@@ -157,7 +157,7 @@ span.bloquesito {
 }
 
 .bloque.libre {
-   background-color: rgba(240, 229, 123, 0.5);
+   background-color: rgba(255, 255, 255, 0.5);
 }
 
 .bloque.ocupado {
@@ -168,7 +168,8 @@ span.bloquesito {
 /* -- ARCHIVOS --  */
 .headerArchivos {
    display: flex;
-   justify-content: space-between;;
+   justify-content: space-between;
+   margin-bottom: 0.5rem;
 }
 
 #btn-crear-archivo {
@@ -187,8 +188,42 @@ span.bloquesito {
    }
 }
 
+#btn-recuperar-archivo {
+   width: max-content;
+   padding: 4px 7px;
+   background: orange;
+   cursor: pointer;
+   border: none;
+   outline: none;
+   border-radius: 10px;
+   font-size: 0.8rem;
+}
+
+.bxArchivos {
+   display: flex;
+   justify-content: space-around;
+   flex-wrap: wrap;
+   gap: 1rem;
+}
+
+.bxHistorial {
+   background-color: #413e3e;
+   color: #fff;
+   height: max-content;
+   border-radius: 10px;
+   padding: 1rem;
+   width: 250px;
+}
+
+.bxHistorial .backup {
+   background-color: rgb(115 147 179 / .5);
+   border-radius: 10px;
+   padding: 10px;
+   margin-top: 10px;
+}
+
 .listaArchivos {
-   width: 350px;
+   /* width: 350px; */
    background-color: #c2d3cf;
    border-radius: 10px;
    padding: 1rem;
@@ -206,9 +241,17 @@ span.bloquesito {
    padding: 0.3rem;
 }
 
-.itemArchivo .itemHeader {
+.itemHeader {
    display: flex;
    justify-content: space-between;
+   gap: 1.5rem;
+   margin-bottom: 0.3rem;
+}
+
+.itemBody span#bloques-ocupados {
+   display: inline-block;
+   width: 150px;
+   overflow-x: scroll;
 }
 
 #btn-eliminar-archivo {

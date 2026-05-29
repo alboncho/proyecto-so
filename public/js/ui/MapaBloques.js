@@ -39,5 +39,17 @@ export class MapaBloques {
       return bloques;
    }
 
+   bloquesSobrescritos(archivo) {
 
+      const bloques = archivo.bloques;
+
+      for (const b of bloques) {
+         const bloque = document.querySelector(`.bloque[data-id='${b}']`);
+         
+         if (bloque.classList.contains("ocupado")) 
+            return true;
+      }
+
+      return false;
+   }
 }

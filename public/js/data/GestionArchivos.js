@@ -23,6 +23,9 @@ export class GestionArchivos {
    }
 
    eliminarArchivo(id) {
+      let archivo_eliminado = this.archivos.find(a => a.id === id);
       this.archivos = this.archivos.filter(a => a.id != id);
+
+      return archivo_eliminado;
    }
 }

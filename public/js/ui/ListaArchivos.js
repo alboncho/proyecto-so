@@ -36,7 +36,7 @@ export class ListaArcvhivos {
       itemBody.classList.add("itemBody");
       
       const spanBloques = document.createElement("span");
-      spanBloques.id = "bloques";
+      spanBloques.id = "bloques-ocupados";
       spanBloques.textContent = "[" + bloques.join(",") + "]"
 
       itemBody.append("Bloques: ", spanBloques);
