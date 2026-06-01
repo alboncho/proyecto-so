@@ -1,5 +1,5 @@
 export class LeerPaginas {
-   async leer(url = "/datos/cola-paginas.txt") {
+   async leer(url = "/public/datos/cola-paginas.txt") {
       const respuesta = await fetch(url);
       const texto = await respuesta.text();
       const array_texto = texto.split(" ");

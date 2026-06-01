@@ -1,6 +1,6 @@
 // SOLO LEER EL ARCHIVO
 export class LeerProceso {
-   async read(url = '/datos/datos-procesos.txt') {
+   async read(url = '/public/datos/datos-procesos.txt') {
       const respuesta = await fetch(url);
       const lector = respuesta.body.getReader();
       const decodificador = new TextDecoder();
