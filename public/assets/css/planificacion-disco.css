@@ -172,7 +172,7 @@ body {
 }
 
 .inputGrupo textarea {
-   --size: 120px;
+   --size: 220px;
 
    min-width: var(--size);
    min-height: var(--size);

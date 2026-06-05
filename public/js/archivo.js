@@ -17,7 +17,7 @@ const historial = [];
 // -- CREAR ARCHIVO --
 document.querySelector("#btn-crear-archivo").addEventListener("click", () => {
    let nombre = window.prompt("Escribe el nombre: ", "archivo.txt");
-   let nro_bloques = parseInt(window.prompt("¿Cuántos bloques necesita? (máximo libres: 11)", 5));
+   let nro_bloques = parseInt(window.prompt("¿Cuántos bloques necesita?", 5));
 
    const bloques = mapa.obtenerBloques(nro_bloques);
 
